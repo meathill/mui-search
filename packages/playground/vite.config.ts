@@ -21,6 +21,8 @@ export default defineConfig(({ mode }) => {
       "process.env.WIDGET_VERSION": JSON.stringify(widgetVersion),
     },
     build: {
+      outDir: resolve(__dirname, "../worker/dist"),
+      emptyOutDir: true,
       rollupOptions: {
         input: {
           main: resolve(__dirname, "index.html"),

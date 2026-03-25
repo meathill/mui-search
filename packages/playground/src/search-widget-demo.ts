@@ -1,4 +1,4 @@
-import { WIDGET_LOCALES } from "../search-widget/widget-locales";
+import { SUPPORTED_LOCALES as WIDGET_LOCALES } from "@mui-search/shared";
 
 const publicUrl = (process.env.PUBLIC_URL as string) || window.location.origin;
 const widgetVersion = (process.env.WIDGET_VERSION as string) || "0.0.0";
