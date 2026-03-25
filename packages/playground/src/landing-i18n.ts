@@ -112,40 +112,33 @@ const en: LandingTranslations = {
     steps: [
       {
         label: "Step 1",
-        title: "Clone & Deploy",
+        title: "Clone & Configure",
         code: `git clone https://github.com/meathill/mui-search.git
-cd mui-search
-pnpm install
-
-# Configure wrangler.jsonc with your IDs
+cd mui-search && pnpm install
 cd packages/worker
-pnpm run deploy`,
+
+# Copy example config, then fill in your Cloudflare IDs
+cp wrangler.example.jsonc wrangler.jsonc`,
       },
       {
         label: "Step 2",
-        title: "Import Data",
-        code: `# Prepare your documents as JSON
-cat > data.json << 'EOF'
-[
-  {
-    "slug": "getting-started",
-    "locale": "en",
-    "title": "Getting Started",
-    "content": "Full text content..."
-  }
-]
-EOF
+        title: "Deploy",
+        code: `# Set TiDB connection secret
+wrangler secret put TIDB_DATABASE_URL
 
-# Import via API
-curl -X POST https://your-worker.dev/api/documents \\
-  -H "Authorization: Bearer YOUR_KEY" \\
-  -H "Content-Type: application/json" \\
-  -d @data.json`,
+# Initialize databases
+pnpm run db:d1:migrate:remote
+pnpm run db:migrate
+
+# Build & deploy
+pnpm run deploy`,
       },
       {
         label: "Step 3",
         title: "Embed Widget",
-        code: `<!-- Add to your HTML -->
+        code: `<link rel="stylesheet"
+  href="https://unpkg.com/@mui-search/search-widget/dist/search-widget.css">
+
 <div
   data-mui-search
   data-api-base-url="https://your-worker.dev"
@@ -232,40 +225,33 @@ const zh: LandingTranslations = {
     steps: [
       {
         label: "\u7b2c 1 \u6b65",
-        title: "\u514b\u9686\u4e0e\u90e8\u7f72",
+        title: "\u514b\u9686\u4e0e\u914d\u7f6e",
         code: `git clone https://github.com/meathill/mui-search.git
-cd mui-search
-pnpm install
-
-# \u5728 wrangler.jsonc \u4e2d\u914d\u7f6e\u4f60\u7684 ID
+cd mui-search && pnpm install
 cd packages/worker
-pnpm run deploy`,
+
+# \u590d\u5236\u914d\u7f6e\u6a21\u677f\uff0c\u7136\u540e\u586b\u5165\u4f60\u7684 Cloudflare ID
+cp wrangler.example.jsonc wrangler.jsonc`,
       },
       {
         label: "\u7b2c 2 \u6b65",
-        title: "\u5bfc\u5165\u6570\u636e",
-        code: `# \u51c6\u5907 JSON \u683c\u5f0f\u7684\u6587\u6863\u6570\u636e
-cat > data.json << 'EOF'
-[
-  {
-    "slug": "getting-started",
-    "locale": "zh",
-    "title": "\u5feb\u901f\u5f00\u59cb",
-    "content": "\u5b8c\u6574\u6587\u672c\u5185\u5bb9..."
-  }
-]
-EOF
+        title: "\u90e8\u7f72",
+        code: `# \u8bbe\u7f6e TiDB \u8fde\u63a5\u5bc6\u94a5
+wrangler secret put TIDB_DATABASE_URL
 
-# \u901a\u8fc7 API \u5bfc\u5165
-curl -X POST https://your-worker.dev/api/documents \\
-  -H "Authorization: Bearer YOUR_KEY" \\
-  -H "Content-Type: application/json" \\
-  -d @data.json`,
+# \u521d\u59cb\u5316\u6570\u636e\u5e93
+pnpm run db:d1:migrate:remote
+pnpm run db:migrate
+
+# \u6784\u5efa\u5e76\u90e8\u7f72
+pnpm run deploy`,
       },
       {
         label: "\u7b2c 3 \u6b65",
         title: "\u5d4c\u5165\u7ec4\u4ef6",
-        code: `<!-- \u6dfb\u52a0\u5230\u4f60\u7684 HTML -->
+        code: `<link rel="stylesheet"
+  href="https://unpkg.com/@mui-search/search-widget/dist/search-widget.css">
+
 <div
   data-mui-search
   data-api-base-url="https://your-worker.dev"

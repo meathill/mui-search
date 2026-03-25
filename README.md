@@ -57,21 +57,26 @@ cd mui-search
 pnpm install
 ```
 
-### 2. Configure Cloudflare Resources
-
-Create the required Cloudflare resources:
+### 2. Configure Worker
 
 ```bash
 cd packages/worker
 
+# Copy the example config
+cp wrangler.example.jsonc wrangler.jsonc
+```
+
+Create Cloudflare resources and fill in the IDs:
+
+```bash
 # Create D1 database
 wrangler d1 create mui-search
+# → Copy database_id into wrangler.jsonc
 
 # Create KV namespace
 wrangler kv namespace create KV
+# → Copy id into wrangler.jsonc
 ```
-
-Update `wrangler.jsonc` with the IDs from the output above.
 
 Set TiDB connection string as a secret:
 
@@ -90,7 +95,32 @@ pnpm run db:d1:migrate:remote
 pnpm run db:migrate
 ```
 
-### 4. Deploy
+### 4. Import Data
+
+Prepare a JSON file with your documents:
+
+```json
+[
+  {
+    "slug": "getting-started",
+    "locale": "en",
+    "title": "Getting Started",
+    "description": "How to get started",
+    "content": "Full text content for search indexing..."
+  }
+]
+```
+
+Import via the API:
+
+```bash
+curl -X POST https://your-worker.dev/api/documents \
+  -H "Authorization: Bearer YOUR_API_SECRET_KEY" \
+  -H "Content-Type: application/json" \
+  -d @data.json
+```
+
+### 5. Deploy
 
 ```bash
 pnpm run deploy
@@ -98,15 +128,20 @@ pnpm run deploy
 
 This builds the playground static site and deploys everything (Worker + static assets) to Cloudflare.
 
-### 5. Embed the Widget
+### 6. Embed the Widget
 
 ```html
+<!-- Include the CSS -->
+<link rel="stylesheet" href="https://unpkg.com/@mui-search/search-widget/dist/search-widget.css">
+
+<!-- Add a mount point -->
 <div
   data-mui-search
   data-api-base-url="https://your-worker.your-domain.workers.dev"
   data-locale="en"
 ></div>
 
+<!-- Include the JS -->
 <script src="https://unpkg.com/@mui-search/search-widget/dist/search.en.js"></script>
 ```
 

@@ -2,8 +2,12 @@
   "name": "@mui-search/search-widget",
   "version": "0.1.0",
   "type": "module",
+  "exports": {
+    "./style.css": "./dist/search-widget.css"
+  },
   "scripts": {
-    "build": "node scripts/build-widget-bundles.mjs",
+    "build": "node scripts/build-widget-bundles.mjs && node scripts/build-css.mjs",
+    "build:css": "node scripts/build-css.mjs",
     "typecheck": "tsc --noEmit"
   },
   "dependencies": {

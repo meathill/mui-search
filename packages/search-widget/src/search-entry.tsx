@@ -16,7 +16,6 @@ import { getTranslations } from "./locales";
 import { readQueryStateFromUrl } from "./query-state";
 import { createSearchApi } from "./search-api";
 import { SearchWidgetApp } from "./search-widget-app";
-import { ensureWidgetStyles } from "./style";
 import type { SearchWidgetController, SearchWidgetHandle, SearchWidgetMountTarget, SearchWidgetOptions } from "./types";
 
 interface NormalizedSearchWidgetOptions {
@@ -38,7 +37,6 @@ interface NormalizedSearchWidgetOptions {
 
 export function mountSearchWidget(options: SearchWidgetOptions): SearchWidgetHandle {
   const normalizedOptions = normalizeOptions(options);
-  ensureWidgetStyles(document);
 
   const apiConfig: {
     apiBaseUrl: string;

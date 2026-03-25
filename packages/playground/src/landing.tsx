@@ -31,7 +31,7 @@ export function LandingPage(): React.JSX.Element {
 
 function Nav({ t, onToggleLocale }: { t: LandingTranslations; onToggleLocale: () => void }): React.JSX.Element {
   return (
-    <nav className="nav-blur sticky top-0 z-50 border-b border-slate-200/60 bg-white/80">
+    <nav className="sticky top-0 z-50 border-b border-slate-200/60 bg-white/80 backdrop-blur-xl">
       <div className="mx-auto flex max-w-6xl items-center justify-between px-6 py-3">
         <a href="/" className="text-lg font-bold text-slate-900 no-underline">
           MUI Search
@@ -57,7 +57,7 @@ function Nav({ t, onToggleLocale }: { t: LandingTranslations; onToggleLocale: ()
           <button
             type="button"
             onClick={onToggleLocale}
-            className="rounded-full border border-slate-300 bg-white px-3 py-1 text-xs font-bold text-slate-700 hover:border-brand hover:text-brand transition-colors cursor-pointer"
+            className="cursor-pointer rounded-full border border-slate-300 bg-white px-3 py-1 text-xs font-bold text-slate-700 transition-colors hover:border-brand hover:text-brand"
           >
             {t.nav.switchLang}
           </button>
@@ -69,7 +69,11 @@ function Nav({ t, onToggleLocale }: { t: LandingTranslations; onToggleLocale: ()
 
 function Hero({ t }: { t: LandingTranslations }): React.JSX.Element {
   return (
-    <section className="hero-gradient px-6 pb-20 pt-24 text-center">
+    <section className="relative overflow-hidden bg-gradient-to-br from-emerald-50 via-sky-50 to-pink-50 px-6 pb-20 pt-24 text-center">
+      {/* 装饰圆 */}
+      <div className="pointer-events-none absolute -right-[20%] -top-1/2 h-[600px] w-[600px] rounded-full bg-[radial-gradient(circle,rgba(12,125,102,0.06)_0%,transparent_70%)]" />
+      <div className="pointer-events-none absolute -bottom-[30%] -left-[10%] h-[400px] w-[400px] rounded-full bg-[radial-gradient(circle,rgba(99,102,241,0.05)_0%,transparent_70%)]" />
+
       <div className="relative z-10 mx-auto max-w-3xl">
         <span className="mb-6 inline-block rounded-full border border-emerald-200 bg-emerald-50 px-4 py-1.5 text-xs font-bold tracking-wide text-emerald-700">
           {t.hero.badge}
@@ -81,13 +85,13 @@ function Hero({ t }: { t: LandingTranslations }): React.JSX.Element {
         <div className="flex flex-wrap items-center justify-center gap-4">
           <a
             href="#quick-start"
-            className="rounded-xl bg-brand px-7 py-3 text-sm font-bold text-white no-underline shadow-lg shadow-brand/25 hover:bg-brand-dark transition-colors"
+            className="rounded-xl bg-brand px-7 py-3 text-sm font-bold text-white no-underline shadow-lg shadow-brand/25 transition-colors hover:bg-brand-dark"
           >
             {t.hero.ctaStart}
           </a>
           <a
             href="/playground.html"
-            className="rounded-xl border border-slate-300 bg-white px-7 py-3 text-sm font-bold text-slate-700 no-underline shadow-sm hover:border-brand hover:text-brand transition-colors"
+            className="rounded-xl border border-slate-300 bg-white px-7 py-3 text-sm font-bold text-slate-700 no-underline shadow-sm transition-colors hover:border-brand hover:text-brand"
           >
             {t.hero.ctaPlayground}
           </a>
@@ -107,7 +111,10 @@ function Features({ t }: { t: LandingTranslations }): React.JSX.Element {
         </div>
         <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
           {t.features.items.map((item) => (
-            <div key={item.title} className="feature-card rounded-2xl border border-slate-200 bg-white p-7 shadow-sm">
+            <div
+              key={item.title}
+              className="rounded-2xl border border-slate-200 bg-white p-7 shadow-sm transition-[transform,box-shadow] duration-200 hover:-translate-y-0.5 hover:shadow-[0_12px_40px_rgba(0,0,0,0.08)]"
+            >
               <div className="mb-4 text-3xl">{item.icon}</div>
               <h3 className="mb-2 text-lg font-bold text-slate-900">{item.title}</h3>
               <p className="text-sm leading-relaxed text-slate-500">{item.desc}</p>
@@ -120,6 +127,8 @@ function Features({ t }: { t: LandingTranslations }): React.JSX.Element {
 }
 
 function Architecture({ t }: { t: LandingTranslations }): React.JSX.Element {
+  const steps = t.architecture.steps;
+
   return (
     <section className="bg-slate-50 px-6 py-20">
       <div className="mx-auto max-w-3xl">
@@ -128,8 +137,12 @@ function Architecture({ t }: { t: LandingTranslations }): React.JSX.Element {
           <p className="text-base text-slate-500">{t.architecture.subtitle}</p>
         </div>
         <div className="space-y-3">
-          {t.architecture.steps.map((step, i) => (
-            <div key={step} className="arch-step flex items-start gap-4 pb-3">
+          {steps.map((step, i) => (
+            <div key={step} className="relative flex items-start gap-4 pb-3">
+              {/* 连接线 */}
+              {i < steps.length - 1 && (
+                <div className="absolute left-5 top-12 -bottom-3 w-0.5 bg-gradient-to-b from-brand to-brand/20" />
+              )}
               <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-brand text-sm font-bold text-white shadow-md shadow-brand/20">
                 {i + 1}
               </div>
@@ -157,7 +170,9 @@ function QuickStart({ t }: { t: LandingTranslations }): React.JSX.Element {
                 <span className="rounded-lg bg-brand/10 px-3 py-1 text-xs font-bold text-brand">{step.label}</span>
                 <h3 className="text-lg font-bold text-slate-900">{step.title}</h3>
               </div>
-              <div className="code-block">{step.code}</div>
+              <pre className="overflow-x-auto whitespace-pre rounded-xl bg-slate-800 p-5 font-mono text-[0.84rem] leading-[1.7] text-slate-200 [tab-size:2]">
+                {step.code}
+              </pre>
             </div>
           ))}
         </div>
@@ -171,20 +186,20 @@ function Footer({ t }: { t: LandingTranslations }): React.JSX.Element {
     <footer className="border-t border-slate-200 bg-white px-6 py-10">
       <div className="mx-auto flex max-w-6xl flex-col items-center gap-4 text-center text-sm text-slate-500">
         <div className="flex items-center gap-6">
-          <a href="/playground.html" className="text-slate-500 no-underline hover:text-brand transition-colors">
+          <a href="/playground.html" className="text-slate-500 no-underline transition-colors hover:text-brand">
             Playground
           </a>
-          <a href="/stat.html" className="text-slate-500 no-underline hover:text-brand transition-colors">
+          <a href="/stat.html" className="text-slate-500 no-underline transition-colors hover:text-brand">
             Analytics
           </a>
-          <a href="/search-widget-demo.html" className="text-slate-500 no-underline hover:text-brand transition-colors">
+          <a href="/search-widget-demo.html" className="text-slate-500 no-underline transition-colors hover:text-brand">
             Widget Demo
           </a>
           <a
             href="https://github.com/meathill/mui-search"
             target="_blank"
             rel="noopener noreferrer"
-            className="text-slate-500 no-underline hover:text-brand transition-colors"
+            className="text-slate-500 no-underline transition-colors hover:text-brand"
           >
             GitHub
           </a>
