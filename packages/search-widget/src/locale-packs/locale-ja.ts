@@ -1,0 +1,25 @@
+import type { LocaleTranslationPack } from "./types";
+
+export const LOCALE_PACK_JA: LocaleTranslationPack = {
+  placeholder: "キーワードを入力してください",
+  statusInit: "検索を開始するにはキーワードを入力してください。",
+  statusError: "不明なエラー",
+  statusSuggestNeedKeyword: "補完を試す前にキーワードを入力してください。",
+  statusSearchNeedKeyword: "検索する前にキーワードを入力してください。",
+  statusSearching: "検索中...",
+  statusTrackNeedSearch: "クリックを記録する前に、まず検索してください。",
+  statusHotRefreshedTemplate: "人気コンテンツを更新しました。{count} 件を返しました。",
+  statusSuggestRefreshedTemplate: "補完が完了しました。{count} 件の候補を返しました。",
+  statusSearchRefreshedTemplate: "検索が完了しました。{count} 件の結果を返しました。",
+  statusClickRecordedTemplate: "クリックを記録しました：{title}。人気リストは毎正時に更新されます。",
+  hotContentsTitleTemplate: "人気コンテンツ（直近 {hours} 時間）",
+  hotContentHitCountTemplate: "{count} ヒット",
+  refreshLoading: "更新中",
+  refreshNormal: "更新",
+  clearQuery: "クリア",
+  emptyHotContents: "人気コンテンツはありません（1時間ごとに集計）",
+  suggestTitle: "もしかして...",
+  emptySuggestions: "候補が見つかりません",
+  searchTitle: "検索結果",
+  emptySearchResults: "検索結果がありません",
+};

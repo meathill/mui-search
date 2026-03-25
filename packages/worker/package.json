@@ -1,0 +1,28 @@
+{
+  "name": "@mui-search/worker",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "wrangler dev --config wrangler.jsonc",
+    "deploy": "wrangler deploy --config wrangler.jsonc",
+    "typecheck": "tsc --noEmit",
+    "types:worker": "wrangler types --config wrangler.jsonc",
+    "db:generate": "drizzle-kit generate --config drizzle.config.ts",
+    "db:migrate": "node --env-file-if-exists=.dev.vars ./node_modules/drizzle-kit/bin.cjs migrate --config drizzle.config.ts",
+    "db:d1:create": "wrangler d1 migrations create DB --config wrangler.jsonc",
+    "db:d1:migrate:local": "wrangler d1 migrations apply DB --local --config wrangler.jsonc",
+    "db:d1:migrate:remote": "wrangler d1 migrations apply DB --remote --config wrangler.jsonc"
+  },
+  "dependencies": {
+    "@tidbcloud/serverless": "^0.2.0",
+    "drizzle-orm": "^0.45.1",
+    "hono": "^4.12.2",
+    "@mui-search/shared": "workspace:*"
+  },
+  "devDependencies": {
+    "drizzle-kit": "^0.31.9",
+    "mysql2": "^3.18.0",
+    "wrangler": "^4.68.1"
+  }
+}

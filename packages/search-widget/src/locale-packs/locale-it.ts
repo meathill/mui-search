@@ -1,0 +1,25 @@
+import type { LocaleTranslationPack } from "./types";
+
+export const LOCALE_PACK_IT: LocaleTranslationPack = {
+  placeholder: "Digita per cercare...",
+  statusInit: "Inserisci una parola chiave per avviare la ricerca.",
+  statusError: "Errore sconosciuto",
+  statusSuggestNeedKeyword: "Inserisci una parola chiave prima di testare il completamento automatico.",
+  statusSearchNeedKeyword: "Inserisci una parola chiave prima di cercare.",
+  statusSearching: "Ricerca in corso...",
+  statusTrackNeedSearch: "Esegui prima una ricerca prima di registrare un clic.",
+  statusHotRefreshedTemplate: "Contenuti di tendenza aggiornati, restituiti {count} record.",
+  statusSuggestRefreshedTemplate: "Completamento automatico completato, restituiti {count} suggerimenti.",
+  statusSearchRefreshedTemplate: "Ricerca completata, restituiti {count} risultati.",
+  statusClickRecordedTemplate: "Clic registrato: {title}. L’elenco delle tendenze sarà aggiornato a ogni ora.",
+  hotContentsTitleTemplate: "Di tendenza (ultime {hours} ore)",
+  hotContentHitCountTemplate: "{count} visite",
+  refreshLoading: "Aggiornamento...",
+  refreshNormal: "Aggiorna",
+  clearQuery: "Cancella",
+  emptyHotContents: "Nessun contenuto di tendenza (aggregazione oraria)",
+  suggestTitle: "Forse cercavi...",
+  emptySuggestions: "Nessun suggerimento trovato",
+  searchTitle: "Risultati di ricerca",
+  emptySearchResults: "Nessun risultato di ricerca",
+};

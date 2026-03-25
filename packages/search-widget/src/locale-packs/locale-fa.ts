@@ -1,0 +1,25 @@
+import type { LocaleTranslationPack } from "./types";
+
+export const LOCALE_PACK_FA: LocaleTranslationPack = {
+  placeholder: "برای جستجو تایپ کنید...",
+  statusInit: "برای شروع جستجو یک کلیدواژه وارد کنید.",
+  statusError: "خطای ناشناخته",
+  statusSuggestNeedKeyword: "پیش از آزمون تکمیل خودکار، کلیدواژه وارد کنید.",
+  statusSearchNeedKeyword: "پیش از جستجو، کلیدواژه وارد کنید.",
+  statusSearching: "در حال جستجو...",
+  statusTrackNeedSearch: "قبل از ثبت کلیک، ابتدا جستجو کنید.",
+  statusHotRefreshedTemplate: "محتوای داغ به‌روزرسانی شد و {count} رکورد بازگشت داده شد.",
+  statusSuggestRefreshedTemplate: "تکمیل خودکار انجام شد و {count} پیشنهاد بازگشت داده شد.",
+  statusSearchRefreshedTemplate: "جستجو انجام شد و {count} نتیجه بازگشت داده شد.",
+  statusClickRecordedTemplate: "کلیک ثبت شد: {title}. فهرست داغ در ابتدای هر ساعت به‌روزرسانی می‌شود.",
+  hotContentsTitleTemplate: "داغ‌ترین‌ها (در {hours} ساعت اخیر)",
+  hotContentHitCountTemplate: "{count} بازدید",
+  refreshLoading: "در حال تازه‌سازی",
+  refreshNormal: "تازه‌سازی",
+  clearQuery: "پاک کردن",
+  emptyHotContents: "محتوای داغی وجود ندارد (تجمیع ساعتی)",
+  suggestTitle: "منظورتان این بود...",
+  emptySuggestions: "پیشنهادی یافت نشد",
+  searchTitle: "نتایج جستجو",
+  emptySearchResults: "نتیجه‌ای یافت نشد",
+};

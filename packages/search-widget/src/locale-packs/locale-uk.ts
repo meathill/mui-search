@@ -1,0 +1,25 @@
+import type { LocaleTranslationPack } from "./types";
+
+export const LOCALE_PACK_UK: LocaleTranslationPack = {
+  placeholder: "Введіть запит для пошуку...",
+  statusInit: "Введіть ключове слово, щоб почати пошук.",
+  statusError: "Невідома помилка",
+  statusSuggestNeedKeyword: "Введіть ключове слово перед перевіркою автодоповнення.",
+  statusSearchNeedKeyword: "Введіть ключове слово перед пошуком.",
+  statusSearching: "Пошук...",
+  statusTrackNeedSearch: "Спочатку виконайте пошук, а потім фіксуйте клік.",
+  statusHotRefreshedTemplate: "Популярний контент оновлено, повернуто {count} записів.",
+  statusSuggestRefreshedTemplate: "Автодоповнення завершено, повернуто {count} підказок.",
+  statusSearchRefreshedTemplate: "Пошук завершено, повернуто {count} результатів.",
+  statusClickRecordedTemplate: "Клік зафіксовано: {title}. Список трендів оновлюється щогодини.",
+  hotContentsTitleTemplate: "Популярне (за останні {hours} год.)",
+  hotContentHitCountTemplate: "{count} переглядів",
+  refreshLoading: "Оновлення...",
+  refreshNormal: "Оновити",
+  clearQuery: "Очистити",
+  emptyHotContents: "Немає популярного контенту (погодинна агрегація)",
+  suggestTitle: "Можливо, ви мали на увазі...",
+  emptySuggestions: "Підказок не знайдено",
+  searchTitle: "Результати пошуку",
+  emptySearchResults: "Немає результатів пошуку",
+};

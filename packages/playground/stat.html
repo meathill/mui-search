@@ -1,0 +1,172 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>MUI Search Analytics Dashboard</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;700&family=JetBrains+Mono:wght@400;600&family=Sora:wght@500;700&display=swap"
+    rel="stylesheet" />
+</head>
+
+<body class="bg-indigo-50/50 dark:bg-slate-900 m-0 min-h-screen text-slate-800 dark:text-slate-200">
+  <main class="max-w-[1120px] mx-auto grid gap-4 p-6 sm:p-[1.5rem_0.95rem_2.6rem]">
+    <header class="grid gap-[0.45rem]">
+      <p
+        class="m-0 w-fit inline-flex items-center px-[0.65rem] py-[0.35rem] rounded-full border border-slate-200 dark:border-slate-700 bg-white/70 dark:bg-slate-800/70 text-slate-600 dark:text-slate-400 text-[0.78rem] font-bold tracking-[0.09em] uppercase">
+        MUI Search Analytics
+      </p>
+      <h1 class="m-0 text-[clamp(1.56rem,4vw,2.3rem)] leading-[1.12]">Search Analytics Dashboard</h1>
+      <p class="m-0 text-slate-500 dark:text-slate-400">
+        Explore top queries and content by day/week/month across locales, with daily trend visibility.
+      </p>
+      <nav class="mt-[0.12rem] flex flex-wrap gap-2" aria-label="Page navigation">
+        <a class="inline-flex items-center px-[0.7rem] py-[0.35rem] rounded-full border border-slate-200 dark:border-slate-700 bg-white/62 dark:bg-slate-800/60 text-slate-800 dark:text-slate-200 no-underline text-[0.84rem] font-bold hover:border-slate-300 dark:hover:border-slate-600 hover:bg-white/80 dark:hover:bg-slate-800/80 transition-colors"
+          href="/">Back to Playground</a>
+        <a class="inline-flex items-center px-[0.7rem] py-[0.35rem] rounded-full border border-slate-200 dark:border-slate-700 bg-white/62 dark:bg-slate-800/60 text-slate-800 dark:text-slate-200 no-underline text-[0.84rem] font-bold hover:border-slate-300 dark:hover:border-slate-600 hover:bg-white/80 dark:hover:bg-slate-800/80 transition-colors"
+          href="/search-widget-demo.html">Open Widget Demo</a>
+      </nav>
+    </header>
+
+    <section
+      class="backdrop-blur-[10px] bg-white/88 dark:bg-slate-800/80 border border-slate-200 dark:border-slate-700/50 rounded-[18px] shadow-[0_18px_44px_rgba(15,35,58,0.18)] dark:shadow-[0_22px_52px_rgba(0,0,0,0.4)] p-[1rem] sm:p-[1rem] min-w-0">
+      <h2 class="m-0 mb-[0.7rem] text-[1.03rem]">Filters</h2>
+      <div class="grid grid-cols-[repeat(auto-fit,minmax(170px,1fr))] gap-[0.7rem]">
+        <label class="grid gap-[0.32rem]" for="stats-days">
+          <span class="text-slate-500 dark:text-slate-400 text-[0.84rem] font-bold">Lookback Days (1-90)</span>
+          <input
+            class="rounded-[10px] border border-slate-200 dark:border-slate-700 text-slate-800 dark:text-slate-200 font-inherit bg-white/86 dark:bg-slate-800/80 px-[0.68rem] py-[0.62rem]"
+            id="stats-days" type="number" min="1" max="90" />
+        </label>
+
+        <label class="grid gap-[0.32rem]" for="stats-locale">
+          <span class="text-slate-500 dark:text-slate-400 text-[0.84rem] font-bold">Locale Filter</span>
+          <select
+            class="rounded-[10px] border border-slate-200 dark:border-slate-700 text-slate-800 dark:text-slate-200 font-inherit bg-white/86 dark:bg-slate-800/80 px-[0.68rem] py-[0.62rem]"
+            id="stats-locale" aria-label="Locale filter"></select>
+        </label>
+
+        <label class="grid gap-[0.32rem]" for="stats-top-granularity">
+          <span class="text-slate-500 dark:text-slate-400 text-[0.84rem] font-bold">Top Granularity</span>
+          <select
+            class="rounded-[10px] border border-slate-200 dark:border-slate-700 text-slate-800 dark:text-slate-200 font-inherit bg-white/86 dark:bg-slate-800/80 px-[0.68rem] py-[0.62rem]"
+            id="stats-top-granularity" aria-label="Top granularity">
+            <option value="day">Daily</option>
+            <option value="week">Weekly</option>
+            <option value="month">Monthly</option>
+          </select>
+        </label>
+
+        <label class="grid gap-[0.32rem]" for="stats-top-dimension">
+          <span class="text-slate-500 dark:text-slate-400 text-[0.84rem] font-bold">Dimension</span>
+          <select
+            class="rounded-[10px] border border-slate-200 dark:border-slate-700 text-slate-800 dark:text-slate-200 font-inherit bg-white/86 dark:bg-slate-800/80 px-[0.68rem] py-[0.62rem]"
+            id="stats-top-dimension" aria-label="Dimension">
+            <option value="query">Query</option>
+            <option value="content">Content Page</option>
+          </select>
+        </label>
+
+        <label class="grid gap-[0.32rem]" for="stats-refresh-button">
+          <span class="text-slate-500 dark:text-slate-400 text-[0.84rem] font-bold">Action</span>
+          <button
+            class="rounded-[10px] border border-slate-200 dark:border-slate-700 font-inherit cursor-pointer bg-teal-700 dark:bg-teal-500 text-white font-bold px-[0.8rem] py-[0.62rem] hover:bg-teal-800 dark:hover:bg-teal-400 disabled:opacity-70 disabled:cursor-not-allowed border-none"
+            id="stats-refresh-button" type="button">Refresh Analytics</button>
+        </label>
+      </div>
+      <p id="stats-status"
+        class="mt-[0.72rem] mb-0 px-[0.72rem] py-[0.62rem] rounded-[10px] border border-dashed border-slate-300 dark:border-slate-600 text-slate-500 dark:text-slate-400 bg-white/60 dark:bg-slate-800/60">
+        Waiting to load...</p>
+    </section>
+
+    <section class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-[0.8rem]">
+      <article
+        class="border border-slate-200 dark:border-slate-700 rounded-[14px] p-[0.78rem] bg-white/50 dark:bg-slate-800/40">
+        <p class="m-0 text-slate-500 dark:text-slate-400 text-[0.82rem]">Total Searches</p>
+        <p id="metric-total-search" class="mt-[0.38rem] mb-0 font-bold text-[clamp(1.15rem,3.4vw,1.55rem)]">0</p>
+      </article>
+
+      <article
+        class="border border-slate-200 dark:border-slate-700 rounded-[14px] p-[0.78rem] bg-white/50 dark:bg-slate-800/40">
+        <p class="m-0 text-slate-500 dark:text-slate-400 text-[0.82rem]">Daily Average</p>
+        <p id="metric-daily-average" class="mt-[0.38rem] mb-0 font-bold text-[clamp(1.15rem,3.4vw,1.55rem)]">0</p>
+      </article>
+
+      <article
+        class="border border-slate-200 dark:border-slate-700 rounded-[14px] p-[0.78rem] bg-white/50 dark:bg-slate-800/40">
+        <p class="m-0 text-slate-500 dark:text-slate-400 text-[0.82rem]">Latest Day Searches</p>
+        <p id="metric-latest-search" class="mt-[0.38rem] mb-0 font-bold text-[clamp(1.15rem,3.4vw,1.55rem)]">0</p>
+      </article>
+
+      <article
+        class="border border-slate-200 dark:border-slate-700 rounded-[14px] p-[0.78rem] bg-white/50 dark:bg-slate-800/40">
+        <p class="m-0 text-slate-500 dark:text-slate-400 text-[0.82rem]">Latest Day Users (Estimated)</p>
+        <p id="metric-latest-users" class="mt-[0.38rem] mb-0 font-bold text-[clamp(1.15rem,3.4vw,1.55rem)]">0</p>
+        <p id="metric-estimate-basis" class="mt-[0.36rem] mb-0 text-[0.76rem] text-slate-400">User count is an estimate.
+        </p>
+      </article>
+    </section>
+
+    <section
+      class="backdrop-blur-[10px] bg-white/88 dark:bg-slate-800/80 border border-slate-200 dark:border-slate-700/50 rounded-[18px] shadow-[0_18px_44px_rgba(15,35,58,0.18)] dark:shadow-[0_22px_52px_rgba(0,0,0,0.4)] p-[1rem] sm:p-[1rem] min-w-0">
+      <h2 class="m-0 mb-[0.7rem] text-[1.03rem]">Daily Trends and Locale Share</h2>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-[0.8rem] items-start">
+        <article
+          class="border border-slate-200 dark:border-slate-700 rounded-[14px] p-[0.58rem] bg-white/50 dark:bg-slate-800/40">
+          <h3 class="m-0 mb-[0.45rem] text-[0.9rem] text-slate-500 dark:text-slate-400">Daily Locale Trend</h3>
+          <div id="stats-chart" class="w-full min-h-[350px]" aria-live="polite"></div>
+        </article>
+        <article
+          class="border border-slate-200 dark:border-slate-700 rounded-[14px] p-[0.58rem] bg-white/50 dark:bg-slate-800/40">
+          <h3 class="m-0 mb-[0.45rem] text-[0.9rem] text-slate-500 dark:text-slate-400">Locale Share</h3>
+          <div id="stats-locale-pie" class="w-full min-h-[350px]" aria-live="polite"></div>
+        </article>
+      </div>
+    </section>
+
+    <section
+      class="backdrop-blur-[10px] bg-white/88 dark:bg-slate-800/80 border border-slate-200 dark:border-slate-700/50 rounded-[18px] shadow-[0_18px_44px_rgba(15,35,58,0.18)] dark:shadow-[0_22px_52px_rgba(0,0,0,0.4)] p-[1rem] sm:p-[1rem] min-w-0">
+      <h2 id="segmented-top-title" class="m-0 mb-[0.7rem] text-[1.03rem]">Segmented Top Details (By Day · Query)</h2>
+      <div id="segmented-top-chart"
+        class="w-full min-h-[320px] border border-slate-200 dark:border-slate-700 rounded-[14px] bg-white/50 dark:bg-slate-800/40 mb-[0.72rem] p-[0.22rem]"
+        aria-live="polite"></div>
+      <div class="overflow-auto">
+        <table class="w-full border-collapse text-[0.9rem]">
+          <thead>
+            <tr>
+              <th
+                class="text-left border-b border-slate-200 dark:border-slate-700 py-[0.56rem] px-[0.42rem] text-slate-500 dark:text-slate-400 font-bold whitespace-nowrap">
+                #</th>
+              <th id="segmented-bucket-header"
+                class="text-left border-b border-slate-200 dark:border-slate-700 py-[0.56rem] px-[0.42rem] text-slate-500 dark:text-slate-400 font-bold whitespace-nowrap">
+                Time Bucket</th>
+              <th
+                class="text-left border-b border-slate-200 dark:border-slate-700 py-[0.56rem] px-[0.42rem] text-slate-500 dark:text-slate-400 font-bold whitespace-nowrap">
+                Locale</th>
+              <th id="segmented-value-header"
+                class="text-left border-b border-slate-200 dark:border-slate-700 py-[0.56rem] px-[0.42rem] text-slate-500 dark:text-slate-400 font-bold whitespace-nowrap">
+                Query</th>
+              <th
+                class="text-left border-b border-slate-200 dark:border-slate-700 py-[0.56rem] px-[0.42rem] text-slate-500 dark:text-slate-400 font-bold whitespace-nowrap">
+                Hits</th>
+              <th id="segmented-id-header"
+                class="text-left border-b border-slate-200 dark:border-slate-700 py-[0.56rem] px-[0.42rem] text-slate-500 dark:text-slate-400 font-bold whitespace-nowrap">
+                Content ID</th>
+            </tr>
+          </thead>
+          <tbody id="segmented-top-body"></tbody>
+        </table>
+      </div>
+      <p id="segmented-top-empty" class="mt-[0.7rem] mb-0 text-slate-500 dark:text-slate-400" hidden>
+        No segmented top data is available for the current filters.
+      </p>
+    </section>
+  </main>
+
+  <script type="module" src="/src/stats-main.ts"></script>
+</body>
+
+</html>

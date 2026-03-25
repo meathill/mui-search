@@ -1,0 +1,25 @@
+import type { LocaleTranslationPack } from "./types";
+
+export const LOCALE_PACK_SV: LocaleTranslationPack = {
+  placeholder: "Skriv för att söka...",
+  statusInit: "Ange ett nyckelord för att starta sökningen.",
+  statusError: "Okänt fel",
+  statusSuggestNeedKeyword: "Ange ett nyckelord innan du testar automatisk komplettering.",
+  statusSearchNeedKeyword: "Ange ett nyckelord innan du söker.",
+  statusSearching: "Söker...",
+  statusTrackNeedSearch: "Sök först innan du registrerar ett klick.",
+  statusHotRefreshedTemplate: "Trendinnehåll uppdaterat, {count} poster returnerades.",
+  statusSuggestRefreshedTemplate: "Automatisk komplettering klar, {count} förslag returnerades.",
+  statusSearchRefreshedTemplate: "Sökning klar, {count} resultat returnerades.",
+  statusClickRecordedTemplate: "Klick registrerat: {title}. Trendlistan uppdateras varje hel timme.",
+  hotContentsTitleTemplate: "Trendande (senaste {hours} timmarna)",
+  hotContentHitCountTemplate: "{count} visningar",
+  refreshLoading: "Uppdaterar",
+  refreshNormal: "Uppdatera",
+  clearQuery: "Rensa",
+  emptyHotContents: "Inget trendinnehåll (aggregeras varje timme)",
+  suggestTitle: "Menade du...",
+  emptySuggestions: "Inga förslag hittades",
+  searchTitle: "Sökresultat",
+  emptySearchResults: "Inga sökresultat",
+};

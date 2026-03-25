@@ -1,0 +1,25 @@
+import type { LocaleTranslationPack } from "./types";
+
+export const LOCALE_PACK_NO: LocaleTranslationPack = {
+  placeholder: "Skriv for å søke...",
+  statusInit: "Skriv inn et nøkkelord for å starte søket.",
+  statusError: "Ukjent feil",
+  statusSuggestNeedKeyword: "Skriv inn et nøkkelord før du tester autofullføring.",
+  statusSearchNeedKeyword: "Skriv inn et nøkkelord før du søker.",
+  statusSearching: "Søker...",
+  statusTrackNeedSearch: "Søk først før du registrerer et klikk.",
+  statusHotRefreshedTemplate: "Trendinnhold oppdatert, {count} poster returnert.",
+  statusSuggestRefreshedTemplate: "Autofullføring ferdig, {count} forslag returnert.",
+  statusSearchRefreshedTemplate: "Søk fullført, {count} resultater returnert.",
+  statusClickRecordedTemplate: "Klikk registrert: {title}. Trendlisten oppdateres hver hele time.",
+  hotContentsTitleTemplate: "Trender (siste {hours} timer)",
+  hotContentHitCountTemplate: "{count} treff",
+  refreshLoading: "Oppdaterer",
+  refreshNormal: "Oppdater",
+  clearQuery: "Tøm",
+  emptyHotContents: "Ingen trendinnhold (aggregeres hver time)",
+  suggestTitle: "Mente du...",
+  emptySuggestions: "Ingen forslag funnet",
+  searchTitle: "Søkeresultater",
+  emptySearchResults: "Ingen søkeresultater",
+};

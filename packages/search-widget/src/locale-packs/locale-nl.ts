@@ -1,0 +1,25 @@
+import type { LocaleTranslationPack } from "./types";
+
+export const LOCALE_PACK_NL: LocaleTranslationPack = {
+  placeholder: "Typ om te zoeken...",
+  statusInit: "Voer een zoekwoord in om te beginnen met zoeken.",
+  statusError: "Onbekende fout",
+  statusSuggestNeedKeyword: "Voer een zoekwoord in voordat je automatisch aanvullen test.",
+  statusSearchNeedKeyword: "Voer een zoekwoord in voordat je zoekt.",
+  statusSearching: "Zoeken...",
+  statusTrackNeedSearch: "Voer eerst een zoekopdracht uit voordat je een klik registreert.",
+  statusHotRefreshedTemplate: "Trending-inhoud vernieuwd, {count} records teruggegeven.",
+  statusSuggestRefreshedTemplate: "Automatisch aanvullen voltooid, {count} suggesties teruggegeven.",
+  statusSearchRefreshedTemplate: "Zoeken voltooid, {count} resultaten teruggegeven.",
+  statusClickRecordedTemplate: "Klik geregistreerd: {title}. De trendinglijst wordt elk heel uur bijgewerkt.",
+  hotContentsTitleTemplate: "Trending (afgelopen {hours} uur)",
+  hotContentHitCountTemplate: "{count} weergaven",
+  refreshLoading: "Vernieuwen...",
+  refreshNormal: "Vernieuwen",
+  clearQuery: "Wissen",
+  emptyHotContents: "Geen trending-inhoud (elk uur geaggregeerd)",
+  suggestTitle: "Bedoelde je...",
+  emptySuggestions: "Geen suggesties gevonden",
+  searchTitle: "Zoekresultaten",
+  emptySearchResults: "Geen zoekresultaten",
+};

@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Search Widget Demo (IIFE)</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;700&family=JetBrains+Mono:wght@400;600&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="/search-widget-demo.css" />
+    <style>
+      .mock-nav {
+        background: #fff;
+        border-bottom: 1px solid #eee;
+        padding: 1rem;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 2rem;
+      }
+
+      .mock-nav-brand {
+        font-weight: 700;
+        font-size: 1.25rem;
+      }
+
+      .mock-nav-right {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+      }
+
+      .demo-language {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        color: #51493d;
+        font-size: 0.875rem;
+      }
+
+      .demo-language select {
+        border: 1px solid #d9cfbf;
+        border-radius: 8px;
+        padding: 0.35rem 0.55rem;
+        background: #fffefb;
+        color: #30271c;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Mock site navigation structure -->
+    <header class="mock-nav">
+      <div class="mock-nav-brand">MUI Search Demo Site</div>
+
+      <div class="mock-nav-right">
+        <label class="demo-language" for="demo-locale-select">
+          <span>Widget Language</span>
+          <select id="demo-locale-select" aria-label="Switch widget language"></select>
+        </label>
+      </div>
+    </header>
+
+    <main class="demo-page">
+      <section class="hero">
+        <p class="hero-tag">MUI Search Widget</p>
+        <h1>Integration Demo (IIFE Auto Init)</h1>
+        <p class="hero-description">
+          The widget auto-initializes on elements with the <code>data-mui-search</code> attribute.
+          Configure via data attributes like <code>data-locale</code>, <code>data-api-base-url</code>, etc.
+        </p>
+      </section>
+
+      <!-- Widget auto-mount point -->
+      <section>
+        <div data-mui-search data-locale="en" data-api-base-url="" data-suggest-limit="8" data-search-limit="10"></div>
+      </section>
+
+      <section class="panel">
+        <header class="panel-header">
+          <h2>Copyable Integration Snippet</h2>
+          <button id="copy-snippet-button" class="button button-secondary" type="button">Copy Snippet</button>
+        </header>
+        <textarea id="snippet-textarea" class="snippet" readonly spellcheck="false"></textarea>
+        <p id="copy-status" class="hint">
+          Add <code>data-mui-search</code> to any element and include the matching JS file before <code>&lt;/body&gt;</code>.
+        </p>
+      </section>
+    </main>
+
+    <script type="module" src="/src/search-widget-demo.ts"></script>
+  </body>
+</html>

@@ -1,0 +1,25 @@
+import type { LocaleTranslationPack } from "./types";
+
+export const LOCALE_PACK_ZH: LocaleTranslationPack = {
+  placeholder: "請輸入關鍵字",
+  statusInit: "請輸入關鍵字開始搜尋。",
+  statusError: "未知錯誤",
+  statusSuggestNeedKeyword: "請輸入關鍵字後再測試補全。",
+  statusSearchNeedKeyword: "請輸入關鍵字後再搜尋。",
+  statusSearching: "搜尋中...",
+  statusTrackNeedSearch: "請先執行一次搜尋，再記錄點擊。",
+  statusHotRefreshedTemplate: "熱門內容刷新完成，返回 {count} 筆記錄。",
+  statusSuggestRefreshedTemplate: "補全完成，返回 {count} 項建議。",
+  statusSearchRefreshedTemplate: "搜尋完成，返回 {count} 筆結果。",
+  statusClickRecordedTemplate: "已記錄點擊：{title}。熱榜會在下一個整點聚合後更新。",
+  hotContentsTitleTemplate: "熱門內容（近 {hours} 小時）",
+  hotContentHitCountTemplate: "{count} 熱度",
+  refreshLoading: "刷新中",
+  refreshNormal: "刷新",
+  clearQuery: "清空關鍵字",
+  emptyHotContents: "暫無熱門內容（熱榜按整點聚合）",
+  suggestTitle: "您是不是想搜...",
+  emptySuggestions: "暫無相關建議",
+  searchTitle: "搜尋結果",
+  emptySearchResults: "暫無搜尋結果",
+};

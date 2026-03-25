@@ -1,0 +1,25 @@
+import type { LocaleTranslationPack } from "./types";
+
+export const LOCALE_PACK_TR: LocaleTranslationPack = {
+  placeholder: "Aramak için yazın...",
+  statusInit: "Aramayı başlatmak için bir anahtar kelime girin.",
+  statusError: "Bilinmeyen hata",
+  statusSuggestNeedKeyword: "Otomatik tamamlamayı test etmeden önce anahtar kelime girin.",
+  statusSearchNeedKeyword: "Aramadan önce anahtar kelime girin.",
+  statusSearching: "Aranıyor...",
+  statusTrackNeedSearch: "Tıklamayı kaydetmeden önce önce arama yapın.",
+  statusHotRefreshedTemplate: "Trend içerik güncellendi, {count} kayıt döndürüldü.",
+  statusSuggestRefreshedTemplate: "Otomatik tamamlama tamamlandı, {count} öneri döndürüldü.",
+  statusSearchRefreshedTemplate: "Arama tamamlandı, {count} sonuç döndürüldü.",
+  statusClickRecordedTemplate: "Tıklama kaydedildi: {title}. Trend listesi her saat başında güncellenir.",
+  hotContentsTitleTemplate: "Trend (Son {hours} saat)",
+  hotContentHitCountTemplate: "{count} görüntüleme",
+  refreshLoading: "Yenileniyor",
+  refreshNormal: "Yenile",
+  clearQuery: "Temizle",
+  emptyHotContents: "Trend içerik yok (saatlik toplanır)",
+  suggestTitle: "Bunu mu demek istediniz...",
+  emptySuggestions: "Öneri bulunamadı",
+  searchTitle: "Arama Sonuçları",
+  emptySearchResults: "Arama sonucu yok",
+};

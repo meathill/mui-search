@@ -1,0 +1,25 @@
+import type { LocaleTranslationPack } from "./types";
+
+export const LOCALE_PACK_KO: LocaleTranslationPack = {
+  placeholder: "검색어를 입력하세요...",
+  statusInit: "검색을 시작하려면 키워드를 입력하세요.",
+  statusError: "알 수 없는 오류",
+  statusSuggestNeedKeyword: "자동완성을 테스트하기 전에 키워드를 입력하세요.",
+  statusSearchNeedKeyword: "검색 전에 키워드를 입력하세요.",
+  statusSearching: "검색 중...",
+  statusTrackNeedSearch: "클릭을 기록하기 전에 먼저 검색하세요.",
+  statusHotRefreshedTemplate: "인기 콘텐츠가 새로고침되어 {count}개의 항목을 반환했습니다.",
+  statusSuggestRefreshedTemplate: "자동완성이 완료되어 {count}개의 제안을 반환했습니다.",
+  statusSearchRefreshedTemplate: "검색이 완료되어 {count}개의 결과를 반환했습니다.",
+  statusClickRecordedTemplate: "클릭이 기록되었습니다: {title}. 인기 목록은 매 정시에 업데이트됩니다.",
+  hotContentsTitleTemplate: "인기 콘텐츠 (최근 {hours}시간)",
+  hotContentHitCountTemplate: "{count} 조회",
+  refreshLoading: "새로고침 중",
+  refreshNormal: "새로고침",
+  clearQuery: "지우기",
+  emptyHotContents: "인기 콘텐츠가 없습니다 (시간 단위 집계)",
+  suggestTitle: "다음을 찾으셨나요...",
+  emptySuggestions: "관련 제안이 없습니다",
+  searchTitle: "검색 결과",
+  emptySearchResults: "검색 결과가 없습니다",
+};

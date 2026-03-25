@@ -1,0 +1,27 @@
+{
+  "version": "7",
+  "dialect": "mysql",
+  "entries": [
+    {
+      "idx": 0,
+      "version": "5",
+      "when": 1772529500000,
+      "tag": "0000_baseline_documents",
+      "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "5",
+      "when": 1772555345266,
+      "tag": "0001_aspiring_scrambler",
+      "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "5",
+      "when": 1772872290000,
+      "tag": "0002_add_locale_index",
+      "breakpoints": true
+    }
+  ]
+}

@@ -1,0 +1,25 @@
+import type { LocaleTranslationPack } from "./types";
+
+export const LOCALE_PACK_CS: LocaleTranslationPack = {
+  placeholder: "Napište pro vyhledávání...",
+  statusInit: "Pro zahájení vyhledávání zadejte klíčové slovo.",
+  statusError: "Neznámá chyba",
+  statusSuggestNeedKeyword: "Před testem našeptávání zadejte klíčové slovo.",
+  statusSearchNeedKeyword: "Před vyhledáváním zadejte klíčové slovo.",
+  statusSearching: "Vyhledávání...",
+  statusTrackNeedSearch: "Nejprve proveďte vyhledávání a potom zaznamenejte kliknutí.",
+  statusHotRefreshedTemplate: "Trendový obsah obnoven, vráceno {count} záznamů.",
+  statusSuggestRefreshedTemplate: "Našeptávání dokončeno, vráceno {count} návrhů.",
+  statusSearchRefreshedTemplate: "Vyhledávání dokončeno, vráceno {count} výsledků.",
+  statusClickRecordedTemplate: "Kliknutí zaznamenáno: {title}. Žebříček se aktualizuje na začátku každé hodiny.",
+  hotContentsTitleTemplate: "Trendový obsah (posledních {hours} hodin)",
+  hotContentHitCountTemplate: "{count} zobrazení",
+  refreshLoading: "Načítání",
+  refreshNormal: "Obnovit",
+  clearQuery: "Vymazat",
+  emptyHotContents: "Žádný trendový obsah (agregace po hodinách)",
+  suggestTitle: "Měli jste na mysli...",
+  emptySuggestions: "Žádné návrhy",
+  searchTitle: "Výsledky vyhledávání",
+  emptySearchResults: "Žádné výsledky vyhledávání",
+};

@@ -1,0 +1,25 @@
+import type { LocaleTranslationPack } from "./types";
+
+export const LOCALE_PACK_TH: LocaleTranslationPack = {
+  placeholder: "พิมพ์เพื่อค้นหา...",
+  statusInit: "กรุณาใส่คีย์เวิร์ดเพื่อเริ่มค้นหา",
+  statusError: "ข้อผิดพลาดที่ไม่ทราบสาเหตุ",
+  statusSuggestNeedKeyword: "กรุณาใส่คีย์เวิร์ดก่อนทดสอบการเติมคำอัตโนมัติ",
+  statusSearchNeedKeyword: "กรุณาใส่คีย์เวิร์ดก่อนค้นหา",
+  statusSearching: "กำลังค้นหา...",
+  statusTrackNeedSearch: "กรุณาค้นหาก่อนบันทึกการคลิก",
+  statusHotRefreshedTemplate: "อัปเดตเนื้อหายอดนิยมแล้ว ส่งกลับ {count} รายการ",
+  statusSuggestRefreshedTemplate: "เติมคำอัตโนมัติเสร็จแล้ว ส่งกลับ {count} คำแนะนำ",
+  statusSearchRefreshedTemplate: "ค้นหาเสร็จแล้ว ส่งกลับ {count} ผลลัพธ์",
+  statusClickRecordedTemplate: "บันทึกการคลิกแล้ว: {title} รายการยอดนิยมจะอัปเดตทุกต้นชั่วโมง",
+  hotContentsTitleTemplate: "เนื้อหายอดนิยม (ย้อนหลัง {hours} ชั่วโมง)",
+  hotContentHitCountTemplate: "{count} ครั้ง",
+  refreshLoading: "กำลังรีเฟรช",
+  refreshNormal: "รีเฟรช",
+  clearQuery: "ล้าง",
+  emptyHotContents: "ยังไม่มีเนื้อหายอดนิยม (สรุปรายชั่วโมง)",
+  suggestTitle: "คุณอาจต้องการค้นหา...",
+  emptySuggestions: "ไม่พบคำแนะนำ",
+  searchTitle: "ผลการค้นหา",
+  emptySearchResults: "ไม่พบผลการค้นหา",
+};

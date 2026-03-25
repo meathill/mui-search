@@ -1,0 +1,25 @@
+import type { LocaleTranslationPack } from "./types";
+
+export const LOCALE_PACK_HI: LocaleTranslationPack = {
+  placeholder: "खोजने के लिए टाइप करें...",
+  statusInit: "खोज शुरू करने के लिए कृपया कीवर्ड दर्ज करें।",
+  statusError: "अज्ञात त्रुटि",
+  statusSuggestNeedKeyword: "ऑटो-कम्प्लीट जाँचने से पहले कीवर्ड दर्ज करें।",
+  statusSearchNeedKeyword: "खोजने से पहले कीवर्ड दर्ज करें।",
+  statusSearching: "खोज जारी है...",
+  statusTrackNeedSearch: "क्लिक दर्ज करने से पहले पहले खोज करें।",
+  statusHotRefreshedTemplate: "ट्रेंडिंग सामग्री अपडेट हुई, {count} रिकॉर्ड लौटे।",
+  statusSuggestRefreshedTemplate: "ऑटो-कम्प्लीट पूरा हुआ, {count} सुझाव लौटे।",
+  statusSearchRefreshedTemplate: "खोज पूरी हुई, {count} परिणाम लौटे।",
+  statusClickRecordedTemplate: "क्लिक दर्ज हुआ: {title}। ट्रेंडिंग सूची हर घंटे अपडेट होगी।",
+  hotContentsTitleTemplate: "ट्रेंडिंग (पिछले {hours} घंटे)",
+  hotContentHitCountTemplate: "{count} हिट्स",
+  refreshLoading: "रीफ़्रेश हो रहा है",
+  refreshNormal: "रीफ़्रेश",
+  clearQuery: "साफ़ करें",
+  emptyHotContents: "कोई ट्रेंडिंग सामग्री नहीं (प्रति घंटे संकलित)",
+  suggestTitle: "क्या आप यह कहना चाहते थे...",
+  emptySuggestions: "कोई सुझाव नहीं मिला",
+  searchTitle: "खोज परिणाम",
+  emptySearchResults: "कोई खोज परिणाम नहीं",
+};

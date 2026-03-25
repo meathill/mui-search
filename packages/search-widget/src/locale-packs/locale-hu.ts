@@ -1,0 +1,25 @@
+import type { LocaleTranslationPack } from "./types";
+
+export const LOCALE_PACK_HU: LocaleTranslationPack = {
+  placeholder: "Írjon a kereséshez...",
+  statusInit: "A keresés indításához adjon meg egy kulcsszót.",
+  statusError: "Ismeretlen hiba",
+  statusSuggestNeedKeyword: "Az automatikus kiegészítés tesztelése előtt adjon meg kulcsszót.",
+  statusSearchNeedKeyword: "Keresés előtt adjon meg kulcsszót.",
+  statusSearching: "Keresés...",
+  statusTrackNeedSearch: "Kattintás rögzítése előtt először keressen.",
+  statusHotRefreshedTemplate: "A felkapott tartalom frissült, {count} rekord érkezett.",
+  statusSuggestRefreshedTemplate: "Az automatikus kiegészítés kész, {count} javaslat érkezett.",
+  statusSearchRefreshedTemplate: "A keresés befejeződött, {count} eredmény érkezett.",
+  statusClickRecordedTemplate: "Kattintás rögzítve: {title}. A felkapott lista minden egész órában frissül.",
+  hotContentsTitleTemplate: "Felkapott (utolsó {hours} óra)",
+  hotContentHitCountTemplate: "{count} megtekintés",
+  refreshLoading: "Frissítés...",
+  refreshNormal: "Frissítés",
+  clearQuery: "Törlés",
+  emptyHotContents: "Nincs felkapott tartalom (óránkénti aggregálás)",
+  suggestTitle: "Ezt kereste...",
+  emptySuggestions: "Nincs javaslat",
+  searchTitle: "Keresési eredmények",
+  emptySearchResults: "Nincs találat",
+};

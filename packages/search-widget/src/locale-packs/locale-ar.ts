@@ -1,0 +1,25 @@
+import type { LocaleTranslationPack } from "./types";
+
+export const LOCALE_PACK_AR: LocaleTranslationPack = {
+  placeholder: "اكتب للبحث...",
+  statusInit: "أدخل كلمة مفتاحية لبدء البحث.",
+  statusError: "خطأ غير معروف",
+  statusSuggestNeedKeyword: "أدخل كلمة مفتاحية قبل تجربة الإكمال التلقائي.",
+  statusSearchNeedKeyword: "أدخل كلمة مفتاحية قبل البحث.",
+  statusSearching: "جارٍ البحث...",
+  statusTrackNeedSearch: "أجرِ بحثًا أولاً قبل تسجيل النقرة.",
+  statusHotRefreshedTemplate: "تم تحديث المحتوى الرائج وإرجاع {count} سجل.",
+  statusSuggestRefreshedTemplate: "اكتمل الإكمال التلقائي وتم إرجاع {count} اقتراح.",
+  statusSearchRefreshedTemplate: "اكتمل البحث وتم إرجاع {count} نتيجة.",
+  statusClickRecordedTemplate: "تم تسجيل النقرة: {title}. سيتم تحديث القائمة الرائجة عند رأس الساعة.",
+  hotContentsTitleTemplate: "الرائج (آخر {hours} ساعة)",
+  hotContentHitCountTemplate: "{count} مشاهدة",
+  refreshLoading: "جارٍ التحديث",
+  refreshNormal: "تحديث",
+  clearQuery: "مسح",
+  emptyHotContents: "لا يوجد محتوى رائج (يتم التجميع كل ساعة)",
+  suggestTitle: "هل تقصد...",
+  emptySuggestions: "لا توجد اقتراحات",
+  searchTitle: "نتائج البحث",
+  emptySearchResults: "لا توجد نتائج بحث",
+};

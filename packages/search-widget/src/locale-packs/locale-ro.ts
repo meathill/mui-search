@@ -1,0 +1,25 @@
+import type { LocaleTranslationPack } from "./types";
+
+export const LOCALE_PACK_RO: LocaleTranslationPack = {
+  placeholder: "Tastați pentru a căuta...",
+  statusInit: "Introduceți un cuvânt-cheie pentru a începe căutarea.",
+  statusError: "Eroare necunoscută",
+  statusSuggestNeedKeyword: "Introduceți un cuvânt-cheie înainte de a testa completarea automată.",
+  statusSearchNeedKeyword: "Introduceți un cuvânt-cheie înainte de a căuta.",
+  statusSearching: "Se caută...",
+  statusTrackNeedSearch: "Căutați mai întâi înainte de a înregistra un clic.",
+  statusHotRefreshedTemplate: "Conținutul popular a fost actualizat, au fost returnate {count} înregistrări.",
+  statusSuggestRefreshedTemplate: "Completarea automată s-a încheiat, au fost returnate {count} sugestii.",
+  statusSearchRefreshedTemplate: "Căutarea s-a încheiat, au fost returnate {count} rezultate.",
+  statusClickRecordedTemplate: "Clic înregistrat: {title}. Lista de tendințe se va actualiza la fiecare oră fixă.",
+  hotContentsTitleTemplate: "În trend (ultimele {hours} ore)",
+  hotContentHitCountTemplate: "{count} vizualizări",
+  refreshLoading: "Se actualizează",
+  refreshNormal: "Actualizează",
+  clearQuery: "Șterge",
+  emptyHotContents: "Nu există conținut popular (agregat orar)",
+  suggestTitle: "Ați vrut să spuneți...",
+  emptySuggestions: "Nu s-au găsit sugestii",
+  searchTitle: "Rezultatele căutării",
+  emptySearchResults: "Nu există rezultate",
+};

@@ -1,0 +1,25 @@
+import type { LocaleTranslationPack } from "./types";
+
+export const LOCALE_PACK_EN: LocaleTranslationPack = {
+  placeholder: "Type to search...",
+  statusInit: "Please enter a keyword to start searching.",
+  statusError: "Unknown error",
+  statusSuggestNeedKeyword: "Please enter a keyword before testing auto-complete.",
+  statusSearchNeedKeyword: "Please enter a keyword before searching.",
+  statusSearching: "Searching...",
+  statusTrackNeedSearch: "Please search first before recording a click.",
+  statusHotRefreshedTemplate: "Trending refreshed, returned {count} records.",
+  statusSuggestRefreshedTemplate: "Auto-complete finished, returned {count} suggestions.",
+  statusSearchRefreshedTemplate: "Search finished, returned {count} results.",
+  statusClickRecordedTemplate: "Click recorded: {title}. Trending list will update on the hour.",
+  hotContentsTitleTemplate: "Trending (Last {hours} hours)",
+  hotContentHitCountTemplate: "{count} hits",
+  refreshLoading: "Refreshing",
+  refreshNormal: "Refresh",
+  clearQuery: "Clear query",
+  emptyHotContents: "No trending content (Aggregated hourly)",
+  suggestTitle: "Did you mean...",
+  emptySuggestions: "No suggestions found",
+  searchTitle: "Search Results",
+  emptySearchResults: "No search results",
+};

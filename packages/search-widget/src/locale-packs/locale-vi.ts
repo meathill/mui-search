@@ -1,0 +1,25 @@
+import type { LocaleTranslationPack } from "./types";
+
+export const LOCALE_PACK_VI: LocaleTranslationPack = {
+  placeholder: "Nhập để tìm kiếm...",
+  statusInit: "Vui lòng nhập từ khóa để bắt đầu tìm kiếm.",
+  statusError: "Lỗi không xác định",
+  statusSuggestNeedKeyword: "Vui lòng nhập từ khóa trước khi thử tự động hoàn thành.",
+  statusSearchNeedKeyword: "Vui lòng nhập từ khóa trước khi tìm kiếm.",
+  statusSearching: "Đang tìm kiếm...",
+  statusTrackNeedSearch: "Hãy tìm kiếm trước khi ghi nhận lượt nhấp.",
+  statusHotRefreshedTemplate: "Nội dung thịnh hành đã được làm mới, trả về {count} bản ghi.",
+  statusSuggestRefreshedTemplate: "Tự động hoàn thành xong, trả về {count} gợi ý.",
+  statusSearchRefreshedTemplate: "Tìm kiếm hoàn tất, trả về {count} kết quả.",
+  statusClickRecordedTemplate: "Đã ghi nhận lượt nhấp: {title}. Danh sách thịnh hành sẽ cập nhật mỗi đầu giờ.",
+  hotContentsTitleTemplate: "Thịnh hành (trong {hours} giờ qua)",
+  hotContentHitCountTemplate: "{count} lượt xem",
+  refreshLoading: "Đang làm mới",
+  refreshNormal: "Làm mới",
+  clearQuery: "Xóa",
+  emptyHotContents: "Chưa có nội dung thịnh hành (tổng hợp theo giờ)",
+  suggestTitle: "Có phải bạn muốn tìm...",
+  emptySuggestions: "Không tìm thấy gợi ý",
+  searchTitle: "Kết quả tìm kiếm",
+  emptySearchResults: "Không có kết quả tìm kiếm",
+};

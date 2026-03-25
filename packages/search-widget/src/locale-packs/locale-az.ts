@@ -1,0 +1,25 @@
+import type { LocaleTranslationPack } from "./types";
+
+export const LOCALE_PACK_AZ: LocaleTranslationPack = {
+  placeholder: "Axtarmaq üçün yazın...",
+  statusInit: "Axtarışa başlamaq üçün açar söz daxil edin.",
+  statusError: "Naməlum xəta",
+  statusSuggestNeedKeyword: "Avtodoldurmanı yoxlamazdan əvvəl açar söz daxil edin.",
+  statusSearchNeedKeyword: "Axtarış etməzdən əvvəl açar söz daxil edin.",
+  statusSearching: "Axtarılır...",
+  statusTrackNeedSearch: "Kliki qeyd etməzdən əvvəl əvvəlcə axtarış edin.",
+  statusHotRefreshedTemplate: "Populyar məzmun yeniləndi, {count} qeyd qaytarıldı.",
+  statusSuggestRefreshedTemplate: "Avtodoldurma tamamlandı, {count} təklif qaytarıldı.",
+  statusSearchRefreshedTemplate: "Axtarış tamamlandı, {count} nəticə qaytarıldı.",
+  statusClickRecordedTemplate: "Klik qeyd edildi: {title}. Populyar siyahı hər saat yenilənəcək.",
+  hotContentsTitleTemplate: "Populyar (son {hours} saat)",
+  hotContentHitCountTemplate: "{count} baxış",
+  refreshLoading: "Yenilənir",
+  refreshNormal: "Yenilə",
+  clearQuery: "Təmizlə",
+  emptyHotContents: "Populyar məzmun yoxdur (saatlıq toplanır)",
+  suggestTitle: "Bunu nəzərdə tuturdunuz...",
+  emptySuggestions: "Təklif tapılmadı",
+  searchTitle: "Axtarış Nəticələri",
+  emptySearchResults: "Axtarış nəticəsi yoxdur",
+};

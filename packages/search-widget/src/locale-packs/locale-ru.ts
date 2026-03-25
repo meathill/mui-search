@@ -1,0 +1,25 @@
+import type { LocaleTranslationPack } from "./types";
+
+export const LOCALE_PACK_RU: LocaleTranslationPack = {
+  placeholder: "Введите запрос для поиска...",
+  statusInit: "Введите ключевое слово, чтобы начать поиск.",
+  statusError: "Неизвестная ошибка",
+  statusSuggestNeedKeyword: "Введите ключевое слово перед проверкой автодополнения.",
+  statusSearchNeedKeyword: "Введите ключевое слово перед поиском.",
+  statusSearching: "Идет поиск...",
+  statusTrackNeedSearch: "Сначала выполните поиск, затем фиксируйте клик.",
+  statusHotRefreshedTemplate: "Популярный контент обновлён, возвращено {count} записей.",
+  statusSuggestRefreshedTemplate: "Автодополнение завершено, возвращено {count} подсказок.",
+  statusSearchRefreshedTemplate: "Поиск завершён, возвращено {count} результатов.",
+  statusClickRecordedTemplate: "Клик зафиксирован: {title}. Список трендов обновляется каждый час.",
+  hotContentsTitleTemplate: "Популярное (за последние {hours} ч.)",
+  hotContentHitCountTemplate: "{count} просмотров",
+  refreshLoading: "Обновление...",
+  refreshNormal: "Обновить",
+  clearQuery: "Очистить",
+  emptyHotContents: "Нет популярного контента (почасовая агрегация)",
+  suggestTitle: "Возможно, вы имели в виду...",
+  emptySuggestions: "Подсказки не найдены",
+  searchTitle: "Результаты поиска",
+  emptySearchResults: "Нет результатов поиска",
+};

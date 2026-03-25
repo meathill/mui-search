@@ -1,0 +1,21 @@
+@import "tailwindcss";
+
+@layer base {
+  body {
+    background:
+      radial-gradient(circle at 8% 10%, #d6f4eb 0%, transparent 36%),
+      radial-gradient(circle at 92% 92%, rgba(59, 130, 246, 0.2) 0%, transparent 44%), #f4f7ff;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    body {
+      background:
+        radial-gradient(circle at 8% 10%, #1b2e3e 0%, transparent 36%),
+        radial-gradient(circle at 92% 92%, rgba(59, 130, 246, 0.1) 0%, transparent 44%), #101724;
+    }
+  }
+
+  * {
+    @apply box-border;
+  }
+}

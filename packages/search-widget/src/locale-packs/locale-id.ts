@@ -1,0 +1,25 @@
+import type { LocaleTranslationPack } from "./types";
+
+export const LOCALE_PACK_ID: LocaleTranslationPack = {
+  placeholder: "Ketik untuk mencari...",
+  statusInit: "Masukkan kata kunci untuk mulai mencari.",
+  statusError: "Kesalahan tidak diketahui",
+  statusSuggestNeedKeyword: "Masukkan kata kunci sebelum menguji pelengkapan otomatis.",
+  statusSearchNeedKeyword: "Masukkan kata kunci sebelum mencari.",
+  statusSearching: "Mencari...",
+  statusTrackNeedSearch: "Cari terlebih dahulu sebelum merekam klik.",
+  statusHotRefreshedTemplate: "Konten tren diperbarui, mengembalikan {count} data.",
+  statusSuggestRefreshedTemplate: "Pelengkapan otomatis selesai, mengembalikan {count} saran.",
+  statusSearchRefreshedTemplate: "Pencarian selesai, mengembalikan {count} hasil.",
+  statusClickRecordedTemplate: "Klik tercatat: {title}. Daftar tren akan diperbarui tiap jam tepat.",
+  hotContentsTitleTemplate: "Trending (Dalam {hours} jam terakhir)",
+  hotContentHitCountTemplate: "{count} kunjungan",
+  refreshLoading: "Menyegarkan",
+  refreshNormal: "Segarkan",
+  clearQuery: "Bersihkan",
+  emptyHotContents: "Belum ada konten tren (diagregasi per jam)",
+  suggestTitle: "Maksud Anda...",
+  emptySuggestions: "Tidak ada saran",
+  searchTitle: "Hasil Pencarian",
+  emptySearchResults: "Tidak ada hasil pencarian",
+};

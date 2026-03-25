@@ -1,0 +1,20 @@
+{
+  "name": "@mui-search/search-widget",
+  "version": "0.1.0",
+  "type": "module",
+  "scripts": {
+    "build": "node scripts/build-widget-bundles.mjs",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "preact": "^10.28.4",
+    "clsx": "^2.1.1",
+    "tailwind-merge": "^3.5.0",
+    "@mui-search/shared": "workspace:*"
+  },
+  "devDependencies": {
+    "vite": "^7.3.1",
+    "tailwindcss": "^4.2.1",
+    "@tailwindcss/vite": "^4.2.1"
+  }
+}

@@ -1,0 +1,25 @@
+import type { LocaleTranslationPack } from "./types";
+
+export const LOCALE_PACK_MS: LocaleTranslationPack = {
+  placeholder: "Taip untuk mencari...",
+  statusInit: "Sila masukkan kata kunci untuk mula mencari.",
+  statusError: "Ralat tidak diketahui",
+  statusSuggestNeedKeyword: "Masukkan kata kunci sebelum menguji auto-lengkap.",
+  statusSearchNeedKeyword: "Masukkan kata kunci sebelum mencari.",
+  statusSearching: "Sedang mencari...",
+  statusTrackNeedSearch: "Cari dahulu sebelum merekod klik.",
+  statusHotRefreshedTemplate: "Kandungan trending dikemas kini, {count} rekod dikembalikan.",
+  statusSuggestRefreshedTemplate: "Auto-lengkap selesai, {count} cadangan dikembalikan.",
+  statusSearchRefreshedTemplate: "Carian selesai, {count} hasil dikembalikan.",
+  statusClickRecordedTemplate: "Klik direkodkan: {title}. Senarai trending akan dikemas kini setiap jam tepat.",
+  hotContentsTitleTemplate: "Trending (Dalam {hours} jam terakhir)",
+  hotContentHitCountTemplate: "{count} hit",
+  refreshLoading: "Menyegar semula",
+  refreshNormal: "Segar semula",
+  clearQuery: "Kosongkan",
+  emptyHotContents: "Tiada kandungan trending (diagregat setiap jam)",
+  suggestTitle: "Adakah anda maksudkan...",
+  emptySuggestions: "Tiada cadangan ditemui",
+  searchTitle: "Hasil Carian",
+  emptySearchResults: "Tiada hasil carian",
+};

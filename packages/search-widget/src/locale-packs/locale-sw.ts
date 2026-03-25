@@ -1,0 +1,25 @@
+import type { LocaleTranslationPack } from "./types";
+
+export const LOCALE_PACK_SW: LocaleTranslationPack = {
+  placeholder: "Andika ili kutafuta...",
+  statusInit: "Tafadhali ingiza neno kuu kuanza utafutaji.",
+  statusError: "Hitilafu isiyojulikana",
+  statusSuggestNeedKeyword: "Ingiza neno kuu kabla ya kujaribu ukamilishaji otomatiki.",
+  statusSearchNeedKeyword: "Ingiza neno kuu kabla ya kutafuta.",
+  statusSearching: "Inatafuta...",
+  statusTrackNeedSearch: "Tafuta kwanza kabla ya kurekodi kubofya.",
+  statusHotRefreshedTemplate: "Yaliyovuma yamesasishwa, rekodi {count} zimerejeshwa.",
+  statusSuggestRefreshedTemplate: "Ukamilishaji otomatiki umekamilika, mapendekezo {count} yamerudishwa.",
+  statusSearchRefreshedTemplate: "Utafutaji umekamilika, matokeo {count} yamerudishwa.",
+  statusClickRecordedTemplate: "Kubofya kumerekodiwa: {title}. Orodha ya yaliyovuma itasasishwa kila saa kamili.",
+  hotContentsTitleTemplate: "Yaliyovuma (saa {hours} zilizopita)",
+  hotContentHitCountTemplate: "mara {count}",
+  refreshLoading: "Inaburudisha",
+  refreshNormal: "Burudisha",
+  clearQuery: "Futa",
+  emptyHotContents: "Hakuna yaliyovuma (hukusanywa kila saa)",
+  suggestTitle: "Je, ulimaanisha...",
+  emptySuggestions: "Hakuna mapendekezo yaliyopatikana",
+  searchTitle: "Matokeo ya Utafutaji",
+  emptySearchResults: "Hakuna matokeo ya utafutaji",
+};

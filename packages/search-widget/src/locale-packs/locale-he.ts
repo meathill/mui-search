@@ -1,0 +1,25 @@
+import type { LocaleTranslationPack } from "./types";
+
+export const LOCALE_PACK_HE: LocaleTranslationPack = {
+  placeholder: "הקלד כדי לחפש...",
+  statusInit: "הזן מילת מפתח כדי להתחיל בחיפוש.",
+  statusError: "שגיאה לא ידועה",
+  statusSuggestNeedKeyword: "הזן מילת מפתח לפני בדיקת ההשלמה האוטומטית.",
+  statusSearchNeedKeyword: "הזן מילת מפתח לפני החיפוש.",
+  statusSearching: "מחפש...",
+  statusTrackNeedSearch: "יש לבצע חיפוש קודם לפני רישום לחיצה.",
+  statusHotRefreshedTemplate: "התוכן הפופולרי עודכן והוחזרו {count} רשומות.",
+  statusSuggestRefreshedTemplate: "ההשלמה האוטומטית הושלמה והוחזרו {count} הצעות.",
+  statusSearchRefreshedTemplate: "החיפוש הושלם והוחזרו {count} תוצאות.",
+  statusClickRecordedTemplate: "הלחיצה נרשמה: {title}. רשימת הטרנדים תתעדכן בכל שעה עגולה.",
+  hotContentsTitleTemplate: "מגמות (ב-{hours} השעות האחרונות)",
+  hotContentHitCountTemplate: "{count} צפיות",
+  refreshLoading: "מרענן",
+  refreshNormal: "רענן",
+  clearQuery: "נקה",
+  emptyHotContents: "אין תוכן פופולרי (איסוף שעתי)",
+  suggestTitle: "האם התכוונת...",
+  emptySuggestions: "לא נמצאו הצעות",
+  searchTitle: "תוצאות חיפוש",
+  emptySearchResults: "לא נמצאו תוצאות חיפוש",
+};

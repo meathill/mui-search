@@ -1,0 +1,25 @@
+import type { LocaleTranslationPack } from "./types";
+
+export const LOCALE_PACK_SR: LocaleTranslationPack = {
+  placeholder: "Unesite za pretragu...",
+  statusInit: "Unesite ključnu reč da biste započeli pretragu.",
+  statusError: "Nepoznata greška",
+  statusSuggestNeedKeyword: "Unesite ključnu reč pre testiranja automatskog dopunjavanja.",
+  statusSearchNeedKeyword: "Unesite ključnu reč pre pretrage.",
+  statusSearching: "Pretraga u toku...",
+  statusTrackNeedSearch: "Prvo izvršite pretragu pre beleženja klika.",
+  statusHotRefreshedTemplate: "Popularan sadržaj je osvežen, vraćeno je {count} zapisa.",
+  statusSuggestRefreshedTemplate: "Automatsko dopunjavanje završeno, vraćeno je {count} predloga.",
+  statusSearchRefreshedTemplate: "Pretraga završena, vraćeno je {count} rezultata.",
+  statusClickRecordedTemplate: "Klik je zabeležen: {title}. Lista trendova se ažurira na svaki puni sat.",
+  hotContentsTitleTemplate: "U trendu (poslednjih {hours} sati)",
+  hotContentHitCountTemplate: "{count} pregleda",
+  refreshLoading: "Osvežavanje",
+  refreshNormal: "Osveži",
+  clearQuery: "Obriši",
+  emptyHotContents: "Nema popularnog sadržaja (agregacija na sat)",
+  suggestTitle: "Da li ste mislili...",
+  emptySuggestions: "Nema pronađenih predloga",
+  searchTitle: "Rezultati pretrage",
+  emptySearchResults: "Nema rezultata pretrage",
+};

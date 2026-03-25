@@ -1,0 +1,25 @@
+import type { LocaleTranslationPack } from "./types";
+
+export const LOCALE_PACK_FI: LocaleTranslationPack = {
+  placeholder: "Kirjoita hakeaksesi...",
+  statusInit: "Anna hakusana aloittaaksesi haun.",
+  statusError: "Tuntematon virhe",
+  statusSuggestNeedKeyword: "Anna hakusana ennen automaattisen täydennyksen testausta.",
+  statusSearchNeedKeyword: "Anna hakusana ennen hakua.",
+  statusSearching: "Haetaan...",
+  statusTrackNeedSearch: "Tee haku ensin ennen klikkauksen kirjaamista.",
+  statusHotRefreshedTemplate: "Trendisisältö päivitetty, palautettiin {count} tietuetta.",
+  statusSuggestRefreshedTemplate: "Automaattinen täydennys valmis, palautettiin {count} ehdotusta.",
+  statusSearchRefreshedTemplate: "Haku valmis, palautettiin {count} tulosta.",
+  statusClickRecordedTemplate: "Klikkaus kirjattu: {title}. Trendilista päivittyy tasatunnein.",
+  hotContentsTitleTemplate: "Trendit (viimeiset {hours} tuntia)",
+  hotContentHitCountTemplate: "{count} katselua",
+  refreshLoading: "Päivitetään",
+  refreshNormal: "Päivitä",
+  clearQuery: "Tyhjennä",
+  emptyHotContents: "Ei trendisisältöä (koostetaan tunneittain)",
+  suggestTitle: "Tarkoititko...",
+  emptySuggestions: "Ei ehdotuksia",
+  searchTitle: "Hakutulokset",
+  emptySearchResults: "Ei hakutuloksia",
+};

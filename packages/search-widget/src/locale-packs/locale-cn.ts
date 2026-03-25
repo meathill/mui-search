@@ -1,0 +1,25 @@
+import type { LocaleTranslationPack } from "./types";
+
+export const LOCALE_PACK_CN: LocaleTranslationPack = {
+  placeholder: "请输入关键词",
+  statusInit: "请输入关键词开始搜索。",
+  statusError: "未知错误",
+  statusSuggestNeedKeyword: "请输入关键词后再测试补全。",
+  statusSearchNeedKeyword: "请输入关键词后再搜索。",
+  statusSearching: "搜索中...",
+  statusTrackNeedSearch: "请先执行一次搜索，再记录点击。",
+  statusHotRefreshedTemplate: "热词刷新完成，返回 {count} 条记录。",
+  statusSuggestRefreshedTemplate: "补全完成，返回 {count} 条建议。",
+  statusSearchRefreshedTemplate: "搜索完成，返回 {count} 条结果。",
+  statusClickRecordedTemplate: "已记录点击：{title}。热榜会在下一个整点聚合后更新。",
+  hotContentsTitleTemplate: "热门内容（近 {hours} 小时）",
+  hotContentHitCountTemplate: "{count} 热度",
+  refreshLoading: "刷新中",
+  refreshNormal: "刷新",
+  clearQuery: "清空关键词",
+  emptyHotContents: "暂无热门内容（热榜按整点聚合）",
+  suggestTitle: "您是不是想搜...",
+  emptySuggestions: "暂无相关建议",
+  searchTitle: "搜索结果",
+  emptySearchResults: "暂无搜索结果",
+};

@@ -1,0 +1,25 @@
+import type { LocaleTranslationPack } from "./types";
+
+export const LOCALE_PACK_EL: LocaleTranslationPack = {
+  placeholder: "Πληκτρολογήστε για αναζήτηση...",
+  statusInit: "Εισαγάγετε λέξη-κλειδί για να ξεκινήσει η αναζήτηση.",
+  statusError: "Άγνωστο σφάλμα",
+  statusSuggestNeedKeyword: "Εισαγάγετε λέξη-κλειδί πριν δοκιμάσετε την αυτόματη συμπλήρωση.",
+  statusSearchNeedKeyword: "Εισαγάγετε λέξη-κλειδί πριν κάνετε αναζήτηση.",
+  statusSearching: "Αναζήτηση...",
+  statusTrackNeedSearch: "Κάντε πρώτα αναζήτηση πριν καταγράψετε κλικ.",
+  statusHotRefreshedTemplate: "Το δημοφιλές περιεχόμενο ενημερώθηκε, επιστράφηκαν {count} εγγραφές.",
+  statusSuggestRefreshedTemplate: "Η αυτόματη συμπλήρωση ολοκληρώθηκε, επιστράφηκαν {count} προτάσεις.",
+  statusSearchRefreshedTemplate: "Η αναζήτηση ολοκληρώθηκε, επιστράφηκαν {count} αποτελέσματα.",
+  statusClickRecordedTemplate: "Καταγράφηκε κλικ: {title}. Η λίστα τάσεων ενημερώνεται κάθε ώρα.",
+  hotContentsTitleTemplate: "Δημοφιλή (τελευταίες {hours} ώρες)",
+  hotContentHitCountTemplate: "{count} προβολές",
+  refreshLoading: "Ανανέωση...",
+  refreshNormal: "Ανανέωση",
+  clearQuery: "Εκκαθάριση",
+  emptyHotContents: "Δεν υπάρχει δημοφιλές περιεχόμενο (ωριαία συγκέντρωση)",
+  suggestTitle: "Μήπως εννοείτε...",
+  emptySuggestions: "Δεν βρέθηκαν προτάσεις",
+  searchTitle: "Αποτελέσματα αναζήτησης",
+  emptySearchResults: "Δεν βρέθηκαν αποτελέσματα",
+};

@@ -1,0 +1,25 @@
+import type { LocaleTranslationPack } from "./types";
+
+export const LOCALE_PACK_DA: LocaleTranslationPack = {
+  placeholder: "Skriv for at søge...",
+  statusInit: "Indtast et nøgleord for at starte søgning.",
+  statusError: "Ukendt fejl",
+  statusSuggestNeedKeyword: "Indtast et nøgleord før du tester autofuldførelse.",
+  statusSearchNeedKeyword: "Indtast et nøgleord før du søger.",
+  statusSearching: "Søger...",
+  statusTrackNeedSearch: "Søg først, før du registrerer et klik.",
+  statusHotRefreshedTemplate: "Trending-indhold opdateret, returnerede {count} poster.",
+  statusSuggestRefreshedTemplate: "Autofuldførelse færdig, returnerede {count} forslag.",
+  statusSearchRefreshedTemplate: "Søgning færdig, returnerede {count} resultater.",
+  statusClickRecordedTemplate: "Klik registreret: {title}. Trending-listen opdateres hver hele time.",
+  hotContentsTitleTemplate: "Trending (sidste {hours} timer)",
+  hotContentHitCountTemplate: "{count} visninger",
+  refreshLoading: "Opdaterer",
+  refreshNormal: "Opdater",
+  clearQuery: "Ryd",
+  emptyHotContents: "Intet trending-indhold (aggregeres hver time)",
+  suggestTitle: "Mente du...",
+  emptySuggestions: "Ingen forslag fundet",
+  searchTitle: "Søgeresultater",
+  emptySearchResults: "Ingen søgeresultater",
+};
