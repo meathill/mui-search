@@ -107,7 +107,7 @@ This builds the playground static site and deploys everything (Worker + static a
   data-locale="en"
 ></div>
 
-<script src="https://your-cdn/search.0.1.0.en.js"></script>
+<script src="https://unpkg.com/@mui-search/search-widget/dist/search.en.js"></script>
 ```
 
 Or mount programmatically:

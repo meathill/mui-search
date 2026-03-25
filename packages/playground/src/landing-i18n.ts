@@ -152,7 +152,7 @@ curl -X POST https://your-worker.dev/api/documents \\
   data-locale="en"
 ></div>
 
-<script src="https://your-cdn/search.0.1.0.en.js"></script>`,
+<script src="https://unpkg.com/@mui-search/search-widget/dist/search.en.js"></script>`,
       },
     ],
   },
@@ -272,7 +272,7 @@ curl -X POST https://your-worker.dev/api/documents \\
   data-locale="zh"
 ></div>
 
-<script src="https://your-cdn/search.0.1.0.zh.js"></script>`,
+<script src="https://unpkg.com/@mui-search/search-widget/dist/search.zh.js"></script>`,
       },
     ],
   },

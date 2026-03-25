@@ -3,7 +3,6 @@
 declare namespace Cloudflare {
   interface Env {
     KV: KVNamespace;
-    BUCKET: R2Bucket;
     DB: D1Database;
     ASSETS: Fetcher;
     PUBLIC_URL: string;
