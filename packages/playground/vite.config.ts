@@ -13,6 +13,7 @@ export default defineConfig(({ mode }) => {
   const widgetVersion = resolveWidgetVersion();
 
   return {
+    appType: "mpa",
     plugins: [tailwindcss(), react()],
     define: {
       "process.env.PUBLIC_URL": JSON.stringify(publicUrl),
@@ -23,6 +24,7 @@ export default defineConfig(({ mode }) => {
       rollupOptions: {
         input: {
           main: resolve(__dirname, "index.html"),
+          playground: resolve(__dirname, "playground.html"),
           stats: resolve(__dirname, "stat.html"),
           demo: resolve(__dirname, "search-widget-demo.html"),
         },
