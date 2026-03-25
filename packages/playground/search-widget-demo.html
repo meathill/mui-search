@@ -3,89 +3,69 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Search Widget Demo (IIFE)</title>
+    <title>Search Widget Demo - MUI Search</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;700&family=JetBrains+Mono:wght@400;600&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Noto+Sans+SC:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="/search-widget-demo.css" />
-    <style>
-      .mock-nav {
-        background: #fff;
-        border-bottom: 1px solid #eee;
-        padding: 1rem;
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        margin-bottom: 2rem;
-      }
-
-      .mock-nav-brand {
-        font-weight: 700;
-        font-size: 1.25rem;
-      }
-
-      .mock-nav-right {
-        display: flex;
-        align-items: center;
-        gap: 1rem;
-      }
-
-      .demo-language {
-        display: flex;
-        align-items: center;
-        gap: 0.5rem;
-        color: #51493d;
-        font-size: 0.875rem;
-      }
-
-      .demo-language select {
-        border: 1px solid #d9cfbf;
-        border-radius: 8px;
-        padding: 0.35rem 0.55rem;
-        background: #fffefb;
-        color: #30271c;
-      }
-    </style>
+    <link rel="stylesheet" href="/src/search-widget-demo.css" />
   </head>
   <body>
-    <!-- Mock site navigation structure -->
-    <header class="mock-nav">
-      <div class="mock-nav-brand">MUI Search Demo Site</div>
-
-      <div class="mock-nav-right">
-        <label class="demo-language" for="demo-locale-select">
-          <span>Widget Language</span>
-          <select id="demo-locale-select" aria-label="Switch widget language"></select>
-        </label>
+    <nav class="sticky top-0 z-50 border-b border-slate-200/60 bg-white/80 backdrop-blur-xl">
+      <div class="mx-auto flex max-w-6xl items-center justify-between px-6 py-3">
+        <a href="/" class="text-lg font-bold text-slate-900 no-underline">MUI Search</a>
+        <div class="flex items-center gap-5 text-sm font-medium">
+          <a href="/playground.html" class="text-slate-600 no-underline hover:text-[#0c7d66] transition-colors">Playground</a>
+          <a href="/stat.html" class="text-slate-600 no-underline hover:text-[#0c7d66] transition-colors">Analytics</a>
+          <span class="text-[#0c7d66] font-bold">Widget Demo</span>
+          <a href="https://github.com/meathill/mui-search" target="_blank" rel="noopener noreferrer"
+            class="text-slate-600 no-underline hover:text-[#0c7d66] transition-colors">GitHub</a>
+        </div>
       </div>
-    </header>
+    </nav>
 
-    <main class="demo-page">
-      <section class="hero">
-        <p class="hero-tag">MUI Search Widget</p>
-        <h1>Integration Demo (IIFE Auto Init)</h1>
-        <p class="hero-description">
-          The widget auto-initializes on elements with the <code>data-mui-search</code> attribute.
-          Configure via data attributes like <code>data-locale</code>, <code>data-api-base-url</code>, etc.
+    <main class="mx-auto max-w-4xl px-6 py-10">
+      <header class="mb-10">
+        <span class="mb-4 inline-block rounded-full border border-emerald-200 bg-emerald-50 px-3 py-1 text-xs font-bold tracking-wide text-emerald-700">
+          Widget Demo
+        </span>
+        <h1 class="mb-3 text-3xl font-bold text-slate-900">Search Widget Integration</h1>
+        <p class="max-w-2xl text-base text-slate-500">
+          The widget auto-initializes on elements with the <code class="rounded bg-slate-100 px-1.5 py-0.5 text-sm font-mono">data-mui-search</code> attribute.
+          Configure via data attributes like <code class="rounded bg-slate-100 px-1.5 py-0.5 text-sm font-mono">data-locale</code>,
+          <code class="rounded bg-slate-100 px-1.5 py-0.5 text-sm font-mono">data-api-base-url</code>, etc.
         </p>
-      </section>
+      </header>
+
+      <!-- Language selector -->
+      <div class="mb-6 flex items-center gap-3">
+        <label for="demo-locale-select" class="text-sm font-medium text-slate-600">Widget Language</label>
+        <select id="demo-locale-select" aria-label="Switch widget language"
+          class="rounded-lg border border-slate-300 bg-white px-3 py-1.5 text-sm text-slate-700"></select>
+      </div>
 
       <!-- Widget auto-mount point -->
-      <section>
+      <section class="mb-10 rounded-2xl border border-slate-200 bg-white p-6 shadow-sm">
         <div data-mui-search data-locale="en" data-api-base-url="" data-suggest-limit="8" data-search-limit="10"></div>
       </section>
 
-      <section class="panel">
-        <header class="panel-header">
-          <h2>Copyable Integration Snippet</h2>
-          <button id="copy-snippet-button" class="button button-secondary" type="button">Copy Snippet</button>
-        </header>
-        <textarea id="snippet-textarea" class="snippet" readonly spellcheck="false"></textarea>
-        <p id="copy-status" class="hint">
-          Add <code>data-mui-search</code> to any element and include the matching JS file before <code>&lt;/body&gt;</code>.
+      <!-- Snippet section -->
+      <section class="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm">
+        <div class="mb-4 flex items-center justify-between">
+          <h2 class="text-lg font-bold text-slate-900">Integration Snippet</h2>
+          <button id="copy-snippet-button" type="button"
+            class="cursor-pointer rounded-lg border border-slate-300 bg-white px-4 py-1.5 text-sm font-medium text-slate-700 transition-colors hover:border-[#0c7d66] hover:text-[#0c7d66]">
+            Copy
+          </button>
+        </div>
+        <textarea id="snippet-textarea" readonly spellcheck="false"
+          class="w-full resize-none rounded-xl border-0 bg-slate-800 p-5 font-mono text-sm leading-relaxed text-slate-200 outline-none"
+          rows="12"></textarea>
+        <p id="copy-status" class="mt-3 text-sm text-slate-500">
+          Add <code class="rounded bg-slate-100 px-1.5 py-0.5 font-mono">data-mui-search</code> to any element
+          and include the CSS + JS files.
         </p>
       </section>
     </main>

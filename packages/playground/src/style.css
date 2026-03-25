@@ -1,34 +1,18 @@
-@import "tailwindcss";
-
-@theme {
-  --color-brand: #0c7d66;
-  --color-brand-hover: #086755;
-  --font-sans: "Sora", "Noto Sans SC", "PingFang SC", sans-serif;
-}
+@import "./base.css";
 
 @layer base {
   body {
-    @apply text-slate-800 dark:text-slate-200 min-h-screen m-0 p-8 sm:p-12;
-    background:
-      radial-gradient(circle at 15% 12%, #fbe7b2 0%, transparent 43%),
-      radial-gradient(circle at 88% 83%, rgba(81, 140, 255, 0.32) 0%, transparent 42%),
-      linear-gradient(145deg, #fff6dd, #edf4ff 52%, #e7fbf3);
+    padding: 2rem;
   }
 
-  @media (prefers-color-scheme: dark) {
+  @media (min-width: 640px) {
     body {
-      background:
-        radial-gradient(circle at 15% 12%, rgba(251, 231, 178, 0.08) 0%, transparent 43%),
-        radial-gradient(circle at 88% 83%, rgba(81, 140, 255, 0.12) 0%, transparent 42%),
-        linear-gradient(145deg, #0d1321, #131b2f 52%, #0a141a);
+      padding: 3rem;
     }
   }
 
-  * {
-    @apply box-border;
-  }
-
   #app {
-    @apply max-w-[1020px] mx-auto;
+    max-width: 1020px;
+    margin-inline: auto;
   }
 }

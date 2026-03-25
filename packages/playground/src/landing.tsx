@@ -1,3 +1,4 @@
+import type { SVGProps } from "react";
 import { useState } from "react";
 import { type LandingTranslations, translations } from "./landing-i18n";
 
@@ -94,6 +95,15 @@ function Hero({ t }: { t: LandingTranslations }): React.JSX.Element {
             className="rounded-xl border border-slate-300 bg-white px-7 py-3 text-sm font-bold text-slate-700 no-underline shadow-sm transition-colors hover:border-brand hover:text-brand"
           >
             {t.hero.ctaPlayground}
+          </a>
+          <a
+            href="https://deploy.workers.cloudflare.com/?url=https://github.com/meathill/mui-search&authed=true&fields={%22name%22:%22TIDB_DATABASE_URL%22,%22secret%22:true,%22descr%22:%22TiDB%20Cloud%20connection%20string%22}&apikeys"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-2 rounded-xl border border-orange-300 bg-orange-50 px-7 py-3 text-sm font-bold text-orange-700 no-underline shadow-sm transition-colors hover:bg-orange-100"
+          >
+            <CloudflareIcon />
+            {t.hero.ctaDeploy}
           </a>
         </div>
       </div>
@@ -208,5 +218,24 @@ function Footer({ t }: { t: LandingTranslations }): React.JSX.Element {
         <p className="m-0">{t.footer.builtWith}</p>
       </div>
     </footer>
+  );
+}
+
+function CloudflareIcon(props: SVGProps<SVGSVGElement>): React.JSX.Element {
+  return (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width="20"
+      height="20"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      {...props}
+    >
+      <path d="M19.5 11.5c0-2.76-2.24-5-5-5a5 5 0 0 0-4.78 3.57A3.5 3.5 0 0 0 6.5 13.5H5a3 3 0 0 0 0 6h14a2.5 2.5 0 0 0 .5-4.95" />
+    </svg>
   );
 }

@@ -12,6 +12,7 @@ export interface LandingTranslations {
     subtitle: string;
     ctaStart: string;
     ctaPlayground: string;
+    ctaDeploy: string;
   };
   features: {
     title: string;
@@ -57,6 +58,7 @@ const en: LandingTranslations = {
       "An open-source hybrid search engine powered by Cloudflare Workers and TiDB Cloud. Combines full-text and vector semantic search with Reciprocal Rank Fusion for best-in-class relevance.",
     ctaStart: "Get Started",
     ctaPlayground: "Try Playground",
+    ctaDeploy: "Deploy to Cloudflare",
   },
   features: {
     title: "Core Features",
@@ -83,9 +85,9 @@ const en: LandingTranslations = {
         desc: "A Preact-powered IIFE widget. Drop one script tag, add a data attribute, and you have search.",
       },
       {
-        icon: "\u{1f30d}",
-        title: "38 Languages",
-        desc: "Fully localized search widget with per-locale bundles. Auto-detects language or set it explicitly.",
+        icon: "\u{1f680}",
+        title: "One-Click Deploy",
+        desc: "Deploy to Cloudflare Workers with a single click. Zero-config infrastructure, instant global availability.",
       },
       {
         icon: "\u{1f4ca}",
@@ -170,6 +172,7 @@ const zh: LandingTranslations = {
       "\u57fa\u4e8e Cloudflare Workers \u548c TiDB Cloud \u7684\u5f00\u6e90\u6df7\u5408\u641c\u7d22\u5f15\u64ce\u3002\u5168\u6587\u68c0\u7d22 + \u5411\u91cf\u8bed\u4e49\u641c\u7d22\uff0c\u901a\u8fc7 RRF \u878d\u5408\u6392\u5e8f\u5b9e\u73b0\u6781\u81f4\u76f8\u5173\u6027\u3002",
     ctaStart: "\u5feb\u901f\u5f00\u59cb",
     ctaPlayground: "\u5728\u7ebf\u4f53\u9a8c",
+    ctaDeploy: "\u90e8\u7f72\u5230 Cloudflare",
   },
   features: {
     title: "\u6838\u5fc3\u7279\u6027",
@@ -196,9 +199,9 @@ const zh: LandingTranslations = {
         desc: "\u57fa\u4e8e Preact \u7684 IIFE \u641c\u7d22\u7ec4\u4ef6\u3002\u4e00\u884c\u4ee3\u7801\u63a5\u5165\uff0c\u52a0\u4e00\u4e2a data \u5c5e\u6027\u5373\u53ef\u4f7f\u7528\u3002",
       },
       {
-        icon: "\u{1f30d}",
-        title: "38 \u79cd\u8bed\u8a00",
-        desc: "\u5b8c\u5168\u672c\u5730\u5316\u7684\u641c\u7d22\u7ec4\u4ef6\uff0c\u6309\u8bed\u8a00\u6253\u5305\u3002\u81ea\u52a8\u8bc6\u522b\u8bed\u8a00\u6216\u624b\u52a8\u6307\u5b9a\u3002",
+        icon: "\u{1f680}",
+        title: "\u4e00\u952e\u90e8\u7f72",
+        desc: "\u4e00\u952e\u90e8\u7f72\u5230 Cloudflare Workers\u3002\u96f6\u914d\u7f6e\u57fa\u7840\u8bbe\u65bd\uff0c\u5373\u65f6\u5168\u7403\u53ef\u7528\u3002",
       },
       {
         icon: "\u{1f4ca}",
