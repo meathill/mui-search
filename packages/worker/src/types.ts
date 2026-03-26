@@ -92,6 +92,12 @@ export interface WorkerEnv extends Omit<GeneratedWorkerEnv, "TIDB_TABLE_NAME" | 
   HOT_CONTENT_ORIGIN?: string;
   API_SECRET_KEY?: string;
   DB?: D1Database;
+  WP_SITE_URL?: string;
+  WP_USERNAME?: string;
+  WP_APP_PASSWORD?: string;
+  WP_LOCALE?: string;
+  WP_CHUNK_MAX_LENGTH?: string;
+  WP_POSTS_PER_PAGE?: string;
 }
 
 export interface TiDBRepository {

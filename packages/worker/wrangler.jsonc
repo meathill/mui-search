@@ -34,9 +34,17 @@
     "TIDB_TABLE_NAME": "documents"
     // "HOT_CONTENT_SOURCE_URL": "https://your-host.com/{locale}/top100.json",
     // "HOT_CONTENT_ORIGIN": "https://www.your-site.com",
-    // "API_SECRET_KEY": "设置为 secret: wrangler secret put API_SECRET_KEY"
+    // "API_SECRET_KEY": "设置为 secret: wrangler secret put API_SECRET_KEY",
+
+    // WordPress 同步配置（配置后每日自动增量同步）
+    // "WP_SITE_URL": "https://your-wordpress-site.com",
+    // "WP_USERNAME": "设置为 secret: wrangler secret put WP_USERNAME",
+    // "WP_APP_PASSWORD": "设置为 secret: wrangler secret put WP_APP_PASSWORD",
+    // "WP_LOCALE": "zh",
+    // "WP_CHUNK_MAX_LENGTH": "2000",
+    // "WP_POSTS_PER_PAGE": "50"
   },
   "triggers": {
-    "crons": ["0 * * * *", "10 0 * * *"]
+    "crons": ["0 * * * *", "10 0 * * *", "30 2 * * *"]
   }
 }

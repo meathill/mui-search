@@ -6,14 +6,14 @@
 
 ## 它能做什么？
 
-`@mui-search/adapter-wordpress` 是一个命令行工具，它会：
+MUI Search 内置了 WordPress 同步功能。只需配置几个环境变量，Worker 就会：
 
-1. 通过 WordPress REST API 拉取你的所有文章
+1. **每天自动**通过 WordPress REST API 增量同步你的文章
 2. 将长文章按标题自动分块，提升向量搜索精度
 3. 写入 TiDB Cloud 数据库，自动生成向量嵌入
-4. 支持全量同步和增量更新
+4. 提供与 WordPress REST API 兼容的搜索端点，可直接替代内置搜索
 
-同步完成后，你的博客内容就可以通过 MUI Search 的混合搜索 API 被检索到。
+**零手动操作** — 部署时配好环境变量，同步就开始了。你也可以通过 API 或 CLI 手动触发。
 
 ---
 
@@ -23,7 +23,6 @@
 
 - **已部署的 MUI Search 实例** — Cloudflare Worker + TiDB Cloud（参考首页 Quick Start）
 - **WordPress 站点** — 版本 4.7+，REST API 已启用（默认开启）
-- **Node.js >= 24** 和 **pnpm** 已安装
 - **HTTPS** — WordPress Application Password 要求站点启用 HTTPS
 
 ---
@@ -61,7 +60,35 @@ Adapter 使用 [Application Passwords](https://make.wordpress.org/core/2020/11/0
 
 ## 第 2 步：配置环境变量
 
-在项目根目录下的 `packages/adapter-wordpress/` 目录中创建 `.env` 文件：
+### 方式一：通过 Wrangler（推荐，自动同步）
+
+将 WP 凭据设为 Cloudflare Worker secret：
+
+```bash
+cd packages/worker
+
+# 设置 WordPress 连接（secret，不会出现在代码中）
+wrangler secret put WP_USERNAME
+wrangler secret put WP_APP_PASSWORD
+```
+
+在 `wrangler.jsonc` 的 `vars` 中添加非敏感配置：
+
+```jsonc
+{
+  "vars": {
+    // ...已有配置...
+    "WP_SITE_URL": "https://your-wordpress-site.com",
+    "WP_LOCALE": "zh"
+  }
+}
+```
+
+部署后，Worker 会**每天凌晨 2:30（UTC）自动执行增量同步**。
+
+### 方式二：通过 .env 文件（CLI 手动同步）
+
+在 `packages/adapter-wordpress/` 目录创建 `.env` 文件：
 
 ```bash
 # ============================
@@ -101,6 +128,26 @@ WP_POSTS_PER_PAGE=50               # 每次 API 请求拉取文章数，默认 5
 ---
 
 ## 第 3 步：同步内容
+
+如果你使用了方式一（Wrangler 配置），部署后同步会自动运行。你也可以通过 API 手动触发：
+
+### 手动触发 API
+
+```bash
+# 增量同步
+curl -X POST "https://your-worker.dev/api/wp-sync" \
+  -H "X-API-Key: your-api-secret-key"
+
+# 全量同步
+curl -X POST "https://your-worker.dev/api/wp-sync?mode=full" \
+  -H "X-API-Key: your-api-secret-key"
+```
+
+> 需要设置 `API_SECRET_KEY` 环境变量来保护此端点。
+
+### CLI 手动同步
+
+如果你使用方式二（.env 文件），可以通过 CLI 同步。
 
 ### 试运行（推荐首次使用）
 
@@ -280,49 +327,6 @@ function mui_search_results($query, $per_page = 10) {
 ```
 
 ---
-
-## 自动化同步
-
-设置 cron 定时任务，自动保持搜索索引与博客内容同步。
-
-### Linux/macOS cron
-
-```bash
-# 每天凌晨 3 点运行增量同步
-0 3 * * * cd /path/to/mui-search/packages/adapter-wordpress && node --env-file=.env src/index.ts sync >> /var/log/mui-search-sync.log 2>&1
-
-# 每周日凌晨 4 点运行全量同步（清理已删除文章）
-0 4 * * 0 cd /path/to/mui-search/packages/adapter-wordpress && node --env-file=.env src/index.ts sync:full >> /var/log/mui-search-sync.log 2>&1
-```
-
-### GitHub Actions
-
-```yaml
-name: Sync WordPress to MUI Search
-on:
-  schedule:
-    - cron: '0 3 * * *'  # 每天 UTC 3:00
-  workflow_dispatch:       # 支持手动触发
-
-jobs:
-  sync:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-      - uses: pnpm/action-setup@v4
-      - uses: actions/setup-node@v4
-        with:
-          node-version: '24'
-          cache: 'pnpm'
-      - run: pnpm install --frozen-lockfile
-      - run: node --env-file=.env src/index.ts sync
-        working-directory: packages/adapter-wordpress
-        env:
-          WP_SITE_URL: ${{ secrets.WP_SITE_URL }}
-          WP_USERNAME: ${{ secrets.WP_USERNAME }}
-          WP_APP_PASSWORD: ${{ secrets.WP_APP_PASSWORD }}
-          TIDB_DATABASE_URL: ${{ secrets.TIDB_DATABASE_URL }}
-```
 
 ---
 

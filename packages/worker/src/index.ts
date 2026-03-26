@@ -1,6 +1,7 @@
 import { createWorkerApp } from "./app";
 import { createRuntimeDependencies } from "./runtime";
 import { createSearchAnalyticsService } from "./services/search-analytics";
+import { runWpSync } from "./services/wp-sync-scheduled";
 import type { WorkerEnv } from "./types";
 
 const DEFAULT_ANALYTICS_LOOKBACK_HOURS = 48;
@@ -8,6 +9,7 @@ const DEFAULT_ANALYTICS_RETENTION_HOURS = 24 * 30;
 const HOURLY_SEGMENTED_DAY_LOOKBACK_DAYS = 1;
 const HOURLY_HOT_CRON = "0 * * * *";
 const DAILY_SEGMENTED_TOP_CRON = "10 0 * * *";
+const DAILY_WP_SYNC_CRON = "30 2 * * *";
 const JS_LONG_CACHE_CONTROL = "public, max-age=31536000, immutable";
 
 const worker = {
@@ -25,7 +27,7 @@ const worker = {
     }
 
     const dependencies = createRuntimeDependencies(env);
-    const app = createWorkerApp(dependencies);
+    const app = createWorkerApp(dependencies, env);
     return app.fetch(request, env, ctx);
   },
 
@@ -34,7 +36,11 @@ const worker = {
     const now = new Date(event.scheduledTime);
 
     let task: Promise<void>;
-    if (event.cron === DAILY_SEGMENTED_TOP_CRON) {
+    if (event.cron === DAILY_WP_SYNC_CRON) {
+      task = runWpSync(env).then(function onWpSyncDone() {
+        return;
+      });
+    } else if (event.cron === DAILY_SEGMENTED_TOP_CRON) {
       task = analyticsService.refreshSegmentedTopSnapshot({
         now,
       });

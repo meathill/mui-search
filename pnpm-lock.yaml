@@ -112,6 +112,9 @@ importers:
 
   packages/worker:
     dependencies:
+      '@mui-search/adapter-wordpress':
+        specifier: workspace:*
+        version: link:../adapter-wordpress
       '@mui-search/shared':
         specifier: workspace:*
         version: link:../shared

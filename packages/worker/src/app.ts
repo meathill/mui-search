@@ -5,10 +5,11 @@ import { type ClickRequestBody, type ClickResponseBody } from "@mui-search/share
 import { buildJsonResponse, parseLocaleFilter, scheduleBackgroundTask } from "./app-utils";
 import { registerReadRoutes } from "./read-routes";
 import { registerSearchRoutes } from "./search-routes";
-import type { AppDependencies, ClickEventRecord } from "./types";
+import type { AppDependencies, ClickEventRecord, WorkerEnv } from "./types";
 import { registerWpSearchRoutes } from "./wp-search-routes";
+import { registerWpSyncRoutes } from "./wp-sync-routes";
 
-export function createWorkerApp(dependencies: AppDependencies): Hono {
+export function createWorkerApp(dependencies: AppDependencies, env?: WorkerEnv): Hono {
   const app = new Hono();
 
   app.use(
@@ -23,6 +24,9 @@ export function createWorkerApp(dependencies: AppDependencies): Hono {
   registerSearchRoutes(app, dependencies);
   registerReadRoutes(app, dependencies);
   registerWpSearchRoutes(app, dependencies);
+  if (env) {
+    registerWpSyncRoutes(app, env);
+  }
 
   app.all("/api/click", async function handleClick(c) {
     if (c.req.method !== "POST") {

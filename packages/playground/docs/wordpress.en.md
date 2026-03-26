@@ -6,14 +6,14 @@ Connect your WordPress blog to MUI Search for hybrid full-text + vector semantic
 
 ## What Does It Do?
 
-`@mui-search/adapter-wordpress` is a CLI tool that:
+MUI Search has built-in WordPress sync. Just configure a few environment variables and the Worker will:
 
-1. Fetches all your published posts via the WordPress REST API
-2. Automatically chunks long articles by headings for better vector search accuracy
-3. Writes content into TiDB Cloud with auto-generated vector embeddings
-4. Supports both full and incremental sync
+1. **Automatically sync** your posts daily via the WordPress REST API
+2. Chunk long articles by headings for better vector search accuracy
+3. Write content into TiDB Cloud with auto-generated vector embeddings
+4. Provide a WP-compatible search endpoint that can replace built-in WordPress search
 
-Once synced, your blog content becomes searchable through MUI Search's hybrid search API.
+**Zero manual work** — configure env vars at deploy time and sync starts automatically. You can also trigger sync manually via API or CLI.
 
 ---
 
@@ -23,7 +23,6 @@ Before you start, make sure you have:
 
 - **A deployed MUI Search instance** — Cloudflare Worker + TiDB Cloud (see the homepage Quick Start)
 - **A WordPress site** — version 4.7+, with REST API enabled (on by default)
-- **Node.js >= 24** and **pnpm** installed
 - **HTTPS** — WordPress Application Passwords require HTTPS
 
 ---
@@ -60,6 +59,34 @@ Note down both your username and the application password for the next step.
 ---
 
 ## Step 2: Configure Environment Variables
+
+### Option A: Via Wrangler (Recommended, Auto Sync)
+
+Set WP credentials as Cloudflare Worker secrets:
+
+```bash
+cd packages/worker
+
+# Set WordPress credentials (secret, won't appear in code)
+wrangler secret put WP_USERNAME
+wrangler secret put WP_APP_PASSWORD
+```
+
+Add non-sensitive config to `wrangler.jsonc` vars:
+
+```jsonc
+{
+  "vars": {
+    // ...existing config...
+    "WP_SITE_URL": "https://your-wordpress-site.com",
+    "WP_LOCALE": "en"
+  }
+}
+```
+
+After deploying, the Worker will **automatically run incremental sync daily at 2:30 AM UTC**.
+
+### Option B: Via .env File (CLI Manual Sync)
 
 Create a `.env` file in the `packages/adapter-wordpress/` directory:
 
@@ -101,6 +128,26 @@ WP_POSTS_PER_PAGE=50               # Posts per API request, default: 50
 ---
 
 ## Step 3: Sync Your Content
+
+If you used Option A (Wrangler config), sync runs automatically after deployment. You can also trigger it manually via API:
+
+### Manual Trigger API
+
+```bash
+# Incremental sync
+curl -X POST "https://your-worker.dev/api/wp-sync" \
+  -H "X-API-Key: your-api-secret-key"
+
+# Full sync
+curl -X POST "https://your-worker.dev/api/wp-sync?mode=full" \
+  -H "X-API-Key: your-api-secret-key"
+```
+
+> Requires `API_SECRET_KEY` environment variable to be set to protect this endpoint.
+
+### CLI Manual Sync
+
+If you used Option B (.env file), you can sync via CLI.
 
 ### Dry Run (Recommended for First Use)
 
@@ -280,49 +327,6 @@ function mui_search_results($query, $per_page = 10) {
 ```
 
 ---
-
-## Automated Sync
-
-Set up cron jobs to keep your search index in sync with blog content.
-
-### Linux/macOS Cron
-
-```bash
-# Daily incremental sync at 3:00 AM
-0 3 * * * cd /path/to/mui-search/packages/adapter-wordpress && node --env-file=.env src/index.ts sync >> /var/log/mui-search-sync.log 2>&1
-
-# Weekly full sync on Sunday at 4:00 AM (cleans up deleted posts)
-0 4 * * 0 cd /path/to/mui-search/packages/adapter-wordpress && node --env-file=.env src/index.ts sync:full >> /var/log/mui-search-sync.log 2>&1
-```
-
-### GitHub Actions
-
-```yaml
-name: Sync WordPress to MUI Search
-on:
-  schedule:
-    - cron: '0 3 * * *'  # Daily at 3:00 UTC
-  workflow_dispatch:       # Allow manual trigger
-
-jobs:
-  sync:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-      - uses: pnpm/action-setup@v4
-      - uses: actions/setup-node@v4
-        with:
-          node-version: '24'
-          cache: 'pnpm'
-      - run: pnpm install --frozen-lockfile
-      - run: node --env-file=.env src/index.ts sync
-        working-directory: packages/adapter-wordpress
-        env:
-          WP_SITE_URL: ${{ secrets.WP_SITE_URL }}
-          WP_USERNAME: ${{ secrets.WP_USERNAME }}
-          WP_APP_PASSWORD: ${{ secrets.WP_APP_PASSWORD }}
-          TIDB_DATABASE_URL: ${{ secrets.TIDB_DATABASE_URL }}
-```
 
 ---
 
