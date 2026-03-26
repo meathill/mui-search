@@ -1,0 +1,17 @@
+{
+  "name": "@mui-search/adapter-wordpress",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "sync": "node --env-file=.env src/index.ts sync",
+    "sync:full": "node --env-file=.env src/index.ts sync:full",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "@tidbcloud/serverless": "^0.2.0"
+  },
+  "devDependencies": {
+    "@types/node": "^25.5.0"
+  }
+}

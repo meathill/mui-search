@@ -6,6 +6,12 @@
       "runtimeExecutable": "pnpm",
       "runtimeArgs": ["--filter", "@mui-search/playground", "dev"],
       "port": 5173
+    },
+    {
+      "name": "worker",
+      "runtimeExecutable": "pnpm",
+      "runtimeArgs": ["--filter", "@mui-search/worker", "dev"],
+      "port": 8787
     }
   ]
 }

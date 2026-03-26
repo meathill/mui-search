@@ -6,6 +6,7 @@ import { buildJsonResponse, parseLocaleFilter, scheduleBackgroundTask } from "./
 import { registerReadRoutes } from "./read-routes";
 import { registerSearchRoutes } from "./search-routes";
 import type { AppDependencies, ClickEventRecord } from "./types";
+import { registerWpSearchRoutes } from "./wp-search-routes";
 
 export function createWorkerApp(dependencies: AppDependencies): Hono {
   const app = new Hono();
@@ -21,6 +22,7 @@ export function createWorkerApp(dependencies: AppDependencies): Hono {
 
   registerSearchRoutes(app, dependencies);
   registerReadRoutes(app, dependencies);
+  registerWpSearchRoutes(app, dependencies);
 
   app.all("/api/click", async function handleClick(c) {
     if (c.req.method !== "POST") {

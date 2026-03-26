@@ -56,6 +56,40 @@ function Nav({ t, onToggleLocale }: { t: LandingTranslations; onToggleLocale: ()
           >
             {t.nav.widgetDemo}
           </a>
+          <div className="group relative">
+            <button
+              type="button"
+              className="flex cursor-pointer items-center gap-1 border-none bg-transparent p-0 text-sm font-medium text-slate-600 transition-colors hover:text-brand dark:text-slate-400 dark:hover:text-brand-light"
+            >
+              {t.nav.examples}
+              <svg
+                className="h-3.5 w-3.5 transition-transform group-hover:rotate-180"
+                viewBox="0 0 20 20"
+                fill="currentColor"
+              >
+                <path
+                  fillRule="evenodd"
+                  d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z"
+                  clipRule="evenodd"
+                />
+              </svg>
+            </button>
+            <div className="invisible absolute left-1/2 top-full z-50 min-w-40 -translate-x-1/2 pt-2 opacity-0 transition-all group-hover:visible group-hover:opacity-100">
+              <div className="rounded-xl border border-slate-200 bg-white py-1 shadow-lg dark:border-slate-700 dark:bg-slate-800">
+                {t.nav.exampleItems.map(function renderItem(item) {
+                  return (
+                    <a
+                      key={item.href}
+                      href={item.href}
+                      className="block px-4 py-2 text-sm text-slate-600 no-underline transition-colors hover:bg-slate-50 hover:text-brand dark:text-slate-400 dark:hover:bg-slate-700 dark:hover:text-brand-light"
+                    >
+                      {item.label}
+                    </a>
+                  );
+                })}
+              </div>
+            </div>
+          </div>
           <a
             href="https://github.com/meathill/mui-search"
             target="_blank"
@@ -225,6 +259,12 @@ function Footer({ t }: { t: LandingTranslations }): React.JSX.Element {
             className="text-slate-500 no-underline transition-colors hover:text-brand dark:text-slate-400 dark:hover:text-brand-light"
           >
             Widget Demo
+          </a>
+          <a
+            href="/docs-wordpress.html"
+            className="text-slate-500 no-underline transition-colors hover:text-brand dark:text-slate-400 dark:hover:text-brand-light"
+          >
+            WordPress Example
           </a>
           <a
             href="https://github.com/meathill/mui-search"

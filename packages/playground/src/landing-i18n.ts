@@ -3,6 +3,8 @@ export interface LandingTranslations {
     playground: string;
     analytics: string;
     widgetDemo: string;
+    examples: string;
+    exampleItems: Array<{ label: string; href: string }>;
     github: string;
     switchLang: string;
   };
@@ -48,6 +50,8 @@ const en: LandingTranslations = {
     playground: "Playground",
     analytics: "Analytics",
     widgetDemo: "Widget Demo",
+    examples: "Examples",
+    exampleItems: [{ label: "WordPress", href: "/docs-wordpress.html" }],
     github: "GitHub",
     switchLang: "\u4e2d\u6587",
   },
@@ -162,6 +166,8 @@ const zh: LandingTranslations = {
     playground: "\u6d4b\u8bd5\u53f0",
     analytics: "\u6570\u636e\u7edf\u8ba1",
     widgetDemo: "\u7ec4\u4ef6\u6f14\u793a",
+    examples: "\u793a\u4f8b",
+    exampleItems: [{ label: "WordPress", href: "/docs-wordpress.html" }],
     github: "GitHub",
     switchLang: "EN",
   },

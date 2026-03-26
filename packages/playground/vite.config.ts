@@ -29,6 +29,7 @@ export default defineConfig(({ mode }) => {
           playground: resolve(__dirname, "playground.html"),
           stats: resolve(__dirname, "stat.html"),
           demo: resolve(__dirname, "search-widget-demo.html"),
+          docsWordpress: resolve(__dirname, "docs-wordpress.html"),
         },
         output: {
           manualChunks(id) {
