@@ -9,6 +9,14 @@
   },
   "account_id": "fdc63eeea83ae8f5234357308b9a638b",
   "compatibility_date": "2026-02-25",
+  "durable_objects": {
+    "bindings": [
+      {
+        "name": "NEXT_CACHE_DO_QUEUE",
+        "class_name": "DOQueueHandler"
+      }
+    ]
+  },
   "d1_databases": [
     {
       "binding": "DB",
@@ -16,11 +24,22 @@
       "database_name": "mui-search"
     }
   ],
+  "images": {
+    "binding": "IMAGES"
+  },
   "kv_namespaces": [
     {
       "binding": "KV",
       "id": "b6e3fae12d9442aebe879055eb230c47",
       "preview_id": "b6e3fae12d9442aebe879055eb230c47"
+    }
+  ],
+  "migrations": [
+    {
+      "tag": "v1",
+      "new_sqlite_classes": [
+        "DOQueueHandler"
+      ]
     }
   ],
   "observability": {
@@ -29,15 +48,20 @@
   "placement": {
     "mode": "smart"
   },
+  "r2_buckets": [
+    {
+      "binding": "NEXT_INC_CACHE_R2_BUCKET",
+      "bucket_name": "site-cache"
+    }
+  ],
   "vars": {
     "PUBLIC_URL": "https://mui-search.meathill.com",
-    "TIDB_TABLE_NAME": "documents"
+    "TIDB_TABLE_NAME": "documents",
     // "HOT_CONTENT_SOURCE_URL": "https://your-host.com/{locale}/top100.json",
     // "HOT_CONTENT_ORIGIN": "https://www.your-site.com",
     // "API_SECRET_KEY": "设置为 secret: wrangler secret put API_SECRET_KEY",
-
     // WordPress 同步配置（配置后每日自动增量同步）
-    // "WP_SITE_URL": "https://your-wordpress-site.com",
+    "WP_SITE_URL": "https://blog.meathill.com",
     // "WP_USERNAME": "设置为 secret: wrangler secret put WP_USERNAME",
     // "WP_APP_PASSWORD": "设置为 secret: wrangler secret put WP_APP_PASSWORD",
     // "WP_LOCALE": "zh",
@@ -45,6 +69,10 @@
     // "WP_POSTS_PER_PAGE": "50"
   },
   "triggers": {
-    "crons": ["0 * * * *", "10 0 * * *", "30 2 * * *"]
+    "crons": [
+      "0 * * * *",
+      "10 0 * * *",
+      "30 2 * * *"
+    ]
   }
 }
