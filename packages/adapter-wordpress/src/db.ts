@@ -6,6 +6,8 @@ export interface DbConnection {
 }
 
 export function createConnection(databaseUrl: string): DbConnection {
+  const hostname = new URL(databaseUrl).hostname;
+  console.log(`[wp-sync-db] 连接数据库: ${hostname}`);
   return connect({ url: databaseUrl });
 }
 
@@ -36,6 +38,7 @@ export async function upsertChunks(
     upserted++;
   }
 
+  console.log(`[wp-sync-db] upsert 完成: ${upserted}/${chunks.length} 条`);
   return upserted;
 }
 
@@ -70,6 +73,7 @@ export async function deleteOrphanedSlugs(
   ])) as Array<{ slug: string }>;
 
   const orphanedSlugs = rows.map((r) => r.slug).filter((slug) => !activeSlugs.has(slug));
+  console.log(`[wp-sync-db] 孤立 slug: ${orphanedSlugs.length}/${rows.length} 条`);
 
   if (orphanedSlugs.length === 0) {
     return 0;
@@ -89,10 +93,13 @@ export async function readSyncState(connection: DbConnection, scope: string): Pr
     scope,
   ])) as Array<{ source_commit: string }>;
 
-  return rows[0]?.source_commit ?? null;
+  const result = rows[0]?.source_commit ?? null;
+  console.log(`[wp-sync-db] readSyncState(${scope}): ${result ?? "(无记录)"}`);
+  return result;
 }
 
 export async function writeSyncState(connection: DbConnection, scope: string, sourceCommit: string): Promise<void> {
+  console.log(`[wp-sync-db] writeSyncState(${scope}): ${sourceCommit}`);
   await connection.execute(
     `INSERT INTO seed_sync_state (scope, source_commit, updated_at)
      VALUES (?, ?, NOW())

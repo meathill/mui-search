@@ -81,7 +81,11 @@ export interface AppDependencies {
   queryContentQueries(contentId: string, days: number, limit: number): Promise<ContentQueryItem[]>;
 }
 
-export interface WorkerEnv extends Omit<GeneratedWorkerEnv, "TIDB_TABLE_NAME" | "ASSETS" | "DB" | "KV"> {
+export interface WorkerEnv
+  extends Omit<
+    GeneratedWorkerEnv,
+    "TIDB_TABLE_NAME" | "ASSETS" | "DB" | "KV" | "WP_SITE_URL" | "WP_USERNAME" | "WP_APP_PASSWORD"
+  > {
   ASSETS: Fetcher;
   KV?: KVNamespace;
   TIDB_DATABASE_URL: string;

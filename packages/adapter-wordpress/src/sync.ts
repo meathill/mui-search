@@ -16,6 +16,7 @@ function buildScope(siteUrl: string): string {
 }
 
 export async function syncFull(config: AdapterConfig, dryRun = false): Promise<SyncResult> {
+  console.log(`[wp-sync] 全量同步开始: 站点=${config.wpSiteUrl}, 表=${config.tidbTableName}`);
   const connection = createConnection(config.tidbDatabaseUrl);
   const scope = buildScope(config.wpSiteUrl);
   const result: SyncResult = { totalPosts: 0, totalChunks: 0, upserted: 0, deleted: 0, errors: [] };
@@ -57,13 +58,20 @@ export async function syncFull(config: AdapterConfig, dryRun = false): Promise<S
 }
 
 export async function syncIncremental(config: AdapterConfig, dryRun = false): Promise<SyncResult> {
+  console.log(`[wp-sync] 增量同步开始: 站点=${config.wpSiteUrl}, 表=${config.tidbTableName}`);
   const connection = createConnection(config.tidbDatabaseUrl);
   const scope = buildScope(config.wpSiteUrl);
   const result: SyncResult = { totalPosts: 0, totalChunks: 0, upserted: 0, deleted: 0, errors: [] };
 
-  const lastSync = await readSyncState(connection, scope);
+  let lastSync: string | null = null;
+  try {
+    lastSync = await readSyncState(connection, scope);
+  } catch (error) {
+    console.error(`[wp-sync] 读取同步状态失败，回退到全量同步:`, error);
+    return syncFull(config, dryRun);
+  }
   if (!lastSync) {
-    console.log("未找到上次同步记录，回退到全量同步");
+    console.log("[wp-sync] 未找到上次同步记录，回退到全量同步");
     return syncFull(config, dryRun);
   }
 

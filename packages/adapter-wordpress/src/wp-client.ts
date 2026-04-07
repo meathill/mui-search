@@ -69,11 +69,13 @@ async function fetchPage(
 
   if (!response.ok) {
     const body = await response.text().catch(() => "");
+    console.error(`[wp-api] 请求失败: ${response.status} ${url}`);
     throw new Error(`WP API 请求失败: ${response.status} ${response.statusText} — ${body}`);
   }
 
   const totalPages = Number.parseInt(response.headers.get("X-WP-TotalPages") ?? "1", 10);
   const posts = (await response.json()) as WpPost[];
+  console.log(`[wp-api] ${url} → ${posts.length} 篇, 共 ${totalPages} 页`);
 
   return { posts, total: totalPages };
 }

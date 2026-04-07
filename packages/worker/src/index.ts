@@ -37,8 +37,9 @@ const worker = {
 
     let task: Promise<void>;
     if (event.cron === DAILY_WP_SYNC_CRON) {
-      task = runWpSync(env).then(function onWpSyncDone() {
-        return;
+      console.log("[wp-sync] cron 触发");
+      task = runWpSync(env).then(function onWpSyncDone(summary) {
+        console.log("[wp-sync] cron 完成:", summary);
       });
     } else if (event.cron === DAILY_SEGMENTED_TOP_CRON) {
       task = analyticsService.refreshSegmentedTopSnapshot({
@@ -68,7 +69,7 @@ const worker = {
 
     ctx.waitUntil(
       task.catch(function onScheduledError(error) {
-        console.error("[analytics] 定时聚合失败", error);
+        console.error("[scheduled] 定时任务失败", error);
       }),
     );
   },

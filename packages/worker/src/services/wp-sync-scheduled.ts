@@ -29,6 +29,12 @@ export function buildWpSyncConfig(env: WorkerEnv): AdapterConfig {
 
 export async function runWpSync(env: WorkerEnv, mode: "incremental" | "full" = "incremental"): Promise<string> {
   if (!isWpSyncConfigured(env)) {
+    const missing = [
+      !env.WP_SITE_URL && "WP_SITE_URL",
+      !env.WP_USERNAME && "WP_USERNAME",
+      !env.WP_APP_PASSWORD && "WP_APP_PASSWORD",
+    ].filter(Boolean);
+    console.warn(`[wp-sync] 配置不完整，跳过。缺失: ${missing.join(", ")}`);
     return "WP 同步未配置，跳过";
   }
 
