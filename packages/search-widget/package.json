@@ -1,6 +1,6 @@
 {
   "name": "@mui-search/search-widget",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "type": "module",
   "exports": {
     "./style.css": "./dist/search-widget.css"

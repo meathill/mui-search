@@ -2,6 +2,7 @@ import { SUPPORTED_LOCALES as WIDGET_LOCALES } from "@mui-search/shared";
 
 const publicUrl = (process.env.PUBLIC_URL as string) || window.location.origin;
 const widgetVersion = (process.env.WIDGET_VERSION as string) || "0.0.0";
+const appVersion = (process.env.APP_VERSION as string) || widgetVersion;
 const DEFAULT_DEMO_LOCALE = "cn";
 const LOCALE_QUERY_KEY = "locale";
 
@@ -26,6 +27,11 @@ initDemoPage(activeLocale);
 function initDemoPage(locale: string) {
   toolset.dataset.apiBaseUrl = publicUrl;
   toolset.dataset.locale = locale;
+
+  const versionBadge = document.querySelector("#app-version-badge");
+  if (versionBadge instanceof HTMLElement) {
+    versionBadge.textContent = `v${appVersion}`;
+  }
 
   renderLocaleOptions(locale);
   snippetTextarea.value = buildSnippet(locale);

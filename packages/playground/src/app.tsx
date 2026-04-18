@@ -11,8 +11,9 @@ export function App(): React.JSX.Element {
   return (
     <section className="grid gap-4">
       <header className="grid gap-[0.45rem] px-[0.35rem] py-[0.1rem]">
-        <p className="m-0 inline-flex w-fit px-[0.68rem] py-[0.36rem] rounded-full text-[0.75rem] font-bold tracking-[0.1em] uppercase text-[#084f42] bg-[#d3fff4] dark:bg-teal-900/30 dark:text-teal-300">
-          MUI Search Playground
+        <p className="m-0 inline-flex w-fit items-center gap-2 px-[0.68rem] py-[0.36rem] rounded-full text-[0.75rem] font-bold tracking-[0.1em] uppercase text-[#084f42] bg-[#d3fff4] dark:bg-teal-900/30 dark:text-teal-300">
+          <span>MUI Search Playground</span>
+          <span className="opacity-60 normal-case tracking-normal font-mono">v{process.env.APP_VERSION}</span>
         </p>
         <h1 className="m-0 text-[clamp(1.58rem,4.3vw,2.4rem)] leading-[1.1]">Hybrid Search API Playground</h1>
         <p className="m-0 text-slate-600 dark:text-slate-400">

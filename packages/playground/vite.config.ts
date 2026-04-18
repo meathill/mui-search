@@ -19,6 +19,7 @@ export default defineConfig(({ mode }) => {
       "process.env.PUBLIC_URL": JSON.stringify(publicUrl),
       "process.env.SITE_URL": JSON.stringify(siteUrl),
       "process.env.WIDGET_VERSION": JSON.stringify(widgetVersion),
+      "process.env.APP_VERSION": JSON.stringify(widgetVersion),
     },
     build: {
       outDir: resolve(__dirname, "../worker/dist"),

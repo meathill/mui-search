@@ -277,6 +277,7 @@ function Footer({ t }: { t: LandingTranslations }): React.JSX.Element {
         </div>
         <p className="m-0">{t.footer.license}</p>
         <p className="m-0">{t.footer.builtWith}</p>
+        <p className="m-0 font-mono text-xs text-slate-400 dark:text-slate-500">v{process.env.APP_VERSION}</p>
       </div>
     </footer>
   );
