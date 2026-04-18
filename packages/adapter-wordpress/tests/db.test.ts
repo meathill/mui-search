@@ -15,13 +15,17 @@ function makeMockConnection(): DbConnection {
   };
 }
 
-function makeChunk(slug: string): ContentChunk {
+function makeChunk(slug: string, overrides: Partial<ContentChunk> = {}): ContentChunk {
   return {
     slug,
     title: `标题 ${slug}`,
     description: "摘要",
     content: `内容 ${slug}`,
     sourcePath: `https://example.com/${slug}`,
+    publishedAt: null,
+    categoryName: null,
+    readingTimeMinutes: null,
+    ...overrides,
   };
 }
 
@@ -47,7 +51,11 @@ describe("db", () => {
     });
 
     it("SQL 包含正确的参数", async () => {
-      const chunk = makeChunk("my-post");
+      const chunk = makeChunk("my-post", {
+        publishedAt: "2024-01-01T00:00:00",
+        categoryName: "前端",
+        readingTimeMinutes: 3,
+      });
       await upsertChunks(connection, "documents", [chunk], "en");
 
       const call = vi.mocked(connection.execute).mock.calls[0]!;
@@ -56,7 +64,20 @@ describe("db", () => {
 
       expect(sql).toContain("INSERT INTO documents");
       expect(sql).toContain("ON DUPLICATE KEY UPDATE");
-      expect(params).toEqual(["my-post", "en", "标题 my-post", "摘要", "内容 my-post", "https://example.com/my-post"]);
+      expect(sql).toContain("published_at");
+      expect(sql).toContain("category_name");
+      expect(sql).toContain("reading_time_minutes");
+      expect(params).toEqual([
+        "my-post",
+        "en",
+        "标题 my-post",
+        "摘要",
+        "内容 my-post",
+        "https://example.com/my-post",
+        "2024-01-01T00:00:00",
+        "前端",
+        3,
+      ]);
     });
   });
 

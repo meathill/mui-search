@@ -143,4 +143,31 @@ describe("chunkPost", () => {
       expect(chunk.sourcePath).toBe("https://blog.example.com/test-post");
     }
   });
+
+  it("透传 publishedAt / categoryName / readingTimeMinutes 到所有 chunk", () => {
+    const post = makePost({
+      date: "2024-06-01T12:00:00",
+      categories: [12, 34],
+      content: { rendered: "<h2>A</h2><p>aaa</p><h2>B</h2><p>bbb</p>" },
+    });
+    const categoryMap = new Map<number, string>([
+      [12, "前端"],
+      [34, "杂谈"],
+    ]);
+    const chunks = chunkPost(post, config, categoryMap);
+    expect(chunks.length).toBeGreaterThan(0);
+    for (const chunk of chunks) {
+      expect(chunk.publishedAt).toBe("2024-06-01T12:00:00");
+      expect(chunk.categoryName).toBe("前端");
+      expect(chunk.readingTimeMinutes).toBeGreaterThanOrEqual(1);
+    }
+  });
+
+  it("没有 date / categoryMap 时返回 null", () => {
+    const post = makePost();
+    const chunks = chunkPost(post, config);
+    expect(chunks[0]!.publishedAt).toBeNull();
+    expect(chunks[0]!.categoryName).toBeNull();
+    expect(chunks[0]!.readingTimeMinutes).toBeGreaterThanOrEqual(1);
+  });
 });

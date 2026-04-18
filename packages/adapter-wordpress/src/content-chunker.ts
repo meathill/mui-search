@@ -4,6 +4,7 @@ import type { AdapterConfig, ContentChunk, WpPost } from "./types";
 const HEADING_LINE_RE = /^(#{2,3})\s+(.+)$/;
 const MAX_SLUG_LENGTH = 255;
 const MAX_FRAGMENT_LENGTH = 50;
+const READING_SPEED_CHARS_PER_MIN = 400;
 
 interface Section {
   heading: string;
@@ -11,7 +12,11 @@ interface Section {
   lines: string[];
 }
 
-export function chunkPost(post: WpPost, config: Pick<AdapterConfig, "chunkMaxLength">): ContentChunk[] {
+export function chunkPost(
+  post: WpPost,
+  config: Pick<AdapterConfig, "chunkMaxLength">,
+  categoryMap?: Map<number, string>,
+): ContentChunk[] {
   const plainText = htmlToText(post.content.rendered);
   if (!plainText) {
     return [];
@@ -20,6 +25,11 @@ export function chunkPost(post: WpPost, config: Pick<AdapterConfig, "chunkMaxLen
   const postTitle = htmlToText(post.title.rendered);
   const description = htmlToText(post.excerpt.rendered);
   const sourcePath = post.link;
+
+  // post 级元数据：同一篇所有 chunk 共享
+  const publishedAt = normalizePublishedAt(post.date);
+  const categoryName = resolveCategoryName(post.categories, categoryMap);
+  const readingTimeMinutes = Math.max(1, Math.ceil(plainText.length / READING_SPEED_CHARS_PER_MIN));
 
   const sections = splitIntoSections(plainText);
 
@@ -32,6 +42,9 @@ export function chunkPost(post: WpPost, config: Pick<AdapterConfig, "chunkMaxLen
         description,
         content: plainText,
         sourcePath,
+        publishedAt,
+        categoryName,
+        readingTimeMinutes,
       },
     ];
   }
@@ -57,11 +70,30 @@ export function chunkPost(post: WpPost, config: Pick<AdapterConfig, "chunkMaxLen
         description,
         content: subChunks[i]!,
         sourcePath,
+        publishedAt,
+        categoryName,
+        readingTimeMinutes,
       });
     }
   }
 
   return chunks;
+}
+
+function normalizePublishedAt(date: string | undefined): string | null {
+  if (!date) return null;
+  // WP 返回的 "2024-01-01T12:34:56"（无时区，按站点时区），直接透传给 TiDB DATETIME
+  return date;
+}
+
+function resolveCategoryName(
+  categoryIds: number[] | undefined,
+  categoryMap: Map<number, string> | undefined,
+): string | null {
+  if (!categoryIds?.length || !categoryMap) return null;
+  const firstId = categoryIds[0];
+  if (firstId == null) return null;
+  return categoryMap.get(firstId) ?? null;
 }
 
 function splitIntoSections(text: string): Section[] {

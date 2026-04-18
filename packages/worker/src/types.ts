@@ -29,6 +29,9 @@ export interface RankedDocument {
   title: string;
   content: string;
   locale?: string;
+  publishedAt?: string | null;
+  categoryName?: string | null;
+  readingTimeMinutes?: number | null;
 }
 
 export interface ResponseCache {

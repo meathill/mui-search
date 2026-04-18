@@ -1,5 +1,16 @@
 import { sql } from "drizzle-orm";
-import { bigint, customType, index, mysqlTable, text, timestamp, uniqueIndex, varchar } from "drizzle-orm/mysql-core";
+import {
+  bigint,
+  customType,
+  datetime,
+  index,
+  int,
+  mysqlTable,
+  text,
+  timestamp,
+  uniqueIndex,
+  varchar,
+} from "drizzle-orm/mysql-core";
 
 const vector1024 = customType<{ data: string }>({
   dataType() {
@@ -22,6 +33,9 @@ export const documents = mysqlTable(
     embedding: vector1024("embedding")
       .generatedAlwaysAs(sql.raw(`EMBED_TEXT("${DEFAULT_TIDB_EMBEDDING_MODEL}", content)`), { mode: "stored" })
       .notNull(),
+    publishedAt: datetime("published_at"),
+    categoryName: varchar("category_name", { length: 255 }),
+    readingTimeMinutes: int("reading_time_minutes"),
     createdAt: timestamp("created_at").defaultNow().notNull(),
   },
   function defineIndexes(table) {

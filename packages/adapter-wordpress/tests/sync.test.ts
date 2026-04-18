@@ -3,6 +3,7 @@ import { beforeEach, describe, expect, it, vi } from "vitest";
 vi.mock("../src/wp-client", () => ({
   fetchAllPosts: vi.fn(),
   fetchPostsModifiedAfter: vi.fn(),
+  fetchCategoryMap: vi.fn().mockResolvedValue(new Map()),
 }));
 
 vi.mock("../src/db", () => ({

@@ -110,7 +110,10 @@ export function createTiDBRepository(options: TiDBRepositoryOptions): TiDBReposi
            doc.slug,
            doc.title,
            LEFT(doc.content, 150) AS content,
-           doc.locale
+           doc.locale,
+           doc.published_at,
+           doc.category_name,
+           doc.reading_time_minutes
          FROM ${tableName} AS doc
          INNER JOIN (
            SELECT
@@ -151,6 +154,9 @@ async function queryKeywordMatchesByFullText(
          title,
          LEFT(content, 150) AS content,
          locale,
+         published_at,
+         category_name,
+         reading_time_minutes,
          fts_match_word(${queryLiteral}, title) AS title_fts_score,
          0 AS content_fts_score
        FROM ${tableName}
@@ -167,6 +173,9 @@ async function queryKeywordMatchesByFullText(
          title,
          LEFT(content, 150) AS content,
          locale,
+         published_at,
+         category_name,
+         reading_time_minutes,
          0 AS title_fts_score,
          fts_match_word(${queryLiteral}, content) AS content_fts_score
        FROM ${tableName}
@@ -193,7 +202,15 @@ async function queryKeywordMatchesByLike(
   const localeFilterSql = normalizedLocale ? "AND locale = ?" : "";
 
   const rows = (await connection.execute(
-    `SELECT CAST(id AS CHAR) AS id, slug, title, LEFT(content, 150) AS content, locale
+    `SELECT
+       CAST(id AS CHAR) AS id,
+       slug,
+       title,
+       LEFT(content, 150) AS content,
+       locale,
+       published_at,
+       category_name,
+       reading_time_minutes
      FROM ${tableName}
      WHERE (LOWER(title) LIKE ? OR LOWER(content) LIKE ?)
        ${localeFilterSql}

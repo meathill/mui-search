@@ -50,4 +50,25 @@ describe("mergeRankedResults", () => {
 
     expect(results).toEqual([]);
   });
+
+  it("应该透传 publishedAt / categoryName / readingTimeMinutes 到最终结果", () => {
+    const keywordMatches = [
+      {
+        id: "a",
+        slug: "alpha",
+        title: "A",
+        content: "A-1",
+        publishedAt: "2024-06-01T00:00:00",
+        categoryName: "前端",
+        readingTimeMinutes: 5,
+      },
+    ];
+    const vectorMatches: typeof keywordMatches = [];
+
+    const [first] = mergeRankedResults(keywordMatches, vectorMatches, 1);
+
+    expect(first?.publishedAt).toBe("2024-06-01T00:00:00");
+    expect(first?.categoryName).toBe("前端");
+    expect(first?.readingTimeMinutes).toBe(5);
+  });
 });

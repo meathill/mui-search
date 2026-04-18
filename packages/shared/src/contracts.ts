@@ -14,6 +14,9 @@ export interface HybridSearchResult {
   score: number;
   locale?: string;
   url?: string;
+  publishedAt?: string | null;
+  categoryName?: string | null;
+  readingTimeMinutes?: number | null;
 }
 
 export interface HotContentItem {

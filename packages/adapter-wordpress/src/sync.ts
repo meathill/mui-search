@@ -7,7 +7,7 @@ import {
   upsertChunks,
   writeSyncState,
 } from "./db";
-import { fetchAllPosts, fetchPostsModifiedAfter } from "./wp-client";
+import { fetchAllPosts, fetchCategoryMap, fetchPostsModifiedAfter } from "./wp-client";
 import type { AdapterConfig, ContentChunk, SyncResult, WpPost } from "./types";
 
 function buildScope(siteUrl: string): string {
@@ -21,13 +21,14 @@ export async function syncFull(config: AdapterConfig, dryRun = false): Promise<S
   const scope = buildScope(config.wpSiteUrl);
   const result: SyncResult = { totalPosts: 0, totalChunks: 0, upserted: 0, deleted: 0, errors: [] };
 
+  const categoryMap = await fetchCategoryMap(config);
   const allChunks: ContentChunk[] = [];
 
   for await (const posts of fetchAllPosts(config)) {
     for (const post of posts) {
       result.totalPosts++;
       try {
-        const chunks = chunkPost(post, config);
+        const chunks = chunkPost(post, config, categoryMap);
         allChunks.push(...chunks);
       } catch (error) {
         result.errors.push(`分块失败 [${post.slug}]: ${String(error)}`);
@@ -90,9 +91,11 @@ export async function syncIncremental(config: AdapterConfig, dryRun = false): Pr
     return result;
   }
 
+  const categoryMap = await fetchCategoryMap(config);
+
   for (const post of updatedPosts) {
     try {
-      const chunks = chunkPost(post, config);
+      const chunks = chunkPost(post, config, categoryMap);
       result.totalChunks += chunks.length;
 
       if (dryRun) {

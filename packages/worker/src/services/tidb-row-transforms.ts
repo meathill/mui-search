@@ -18,6 +18,9 @@ interface TiDBDocumentRow {
   locale?: string;
   title_fts_score?: number;
   content_fts_score?: number;
+  published_at?: string | Date | null;
+  category_name?: string | null;
+  reading_time_minutes?: number | null;
 }
 
 export type { TiDBSuggestionRow, TiDBDocumentRow };
@@ -133,6 +136,18 @@ export function toRankedDocument(row: TiDBDocumentRow): RankedDocument {
   }
   if (typeof row.slug === "string" && row.slug) {
     result.slug = row.slug;
+  }
+  if (row.published_at != null) {
+    result.publishedAt = row.published_at instanceof Date ? row.published_at.toISOString() : String(row.published_at);
+  }
+  if (typeof row.category_name === "string" && row.category_name) {
+    result.categoryName = row.category_name;
+  }
+  if (row.reading_time_minutes != null) {
+    const parsed = Number(row.reading_time_minutes);
+    if (Number.isFinite(parsed)) {
+      result.readingTimeMinutes = parsed;
+    }
   }
 
   return result;

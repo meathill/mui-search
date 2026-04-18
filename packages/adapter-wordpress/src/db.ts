@@ -26,14 +26,28 @@ export async function upsertChunks(
   // 逐条 upsert，避免单次 SQL 过大
   for (const chunk of chunks) {
     await connection.execute(
-      `INSERT INTO ${tableName} (slug, locale, title, description, content, source_path)
-       VALUES (?, ?, ?, ?, ?, ?)
+      `INSERT INTO ${tableName}
+         (slug, locale, title, description, content, source_path, published_at, category_name, reading_time_minutes)
+       VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)
        ON DUPLICATE KEY UPDATE
          title = VALUES(title),
          description = VALUES(description),
          content = VALUES(content),
-         source_path = VALUES(source_path)`,
-      [chunk.slug, locale, chunk.title, chunk.description, chunk.content, chunk.sourcePath],
+         source_path = VALUES(source_path),
+         published_at = VALUES(published_at),
+         category_name = VALUES(category_name),
+         reading_time_minutes = VALUES(reading_time_minutes)`,
+      [
+        chunk.slug,
+        locale,
+        chunk.title,
+        chunk.description,
+        chunk.content,
+        chunk.sourcePath,
+        chunk.publishedAt,
+        chunk.categoryName,
+        chunk.readingTimeMinutes,
+      ],
     );
     upserted++;
   }

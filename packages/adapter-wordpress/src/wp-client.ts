@@ -1,6 +1,39 @@
 import type { AdapterConfig, WpPost } from "./types";
 
-const WP_API_FIELDS = "id,slug,title,content,excerpt,link,modified_gmt,status";
+const WP_API_FIELDS = "id,slug,title,content,excerpt,link,modified_gmt,status,date,categories";
+
+export async function fetchCategoryMap(
+  config: Pick<
+    AdapterConfig,
+    "wpSiteUrl" | "wpUsername" | "wpAppPassword" | "cfAccessClientId" | "cfAccessClientSecret"
+  >,
+): Promise<Map<number, string>> {
+  const url = `${config.wpSiteUrl}/wp-json/wp/v2/categories?per_page=100&_fields=id,name`;
+  const credentials = btoa(`${config.wpUsername}:${config.wpAppPassword}`);
+  const headers: Record<string, string> = {
+    Authorization: `Basic ${credentials}`,
+    Accept: "application/json",
+  };
+  if (config.cfAccessClientId && config.cfAccessClientSecret) {
+    headers["CF-Access-Client-Id"] = config.cfAccessClientId;
+    headers["CF-Access-Client-Secret"] = config.cfAccessClientSecret;
+  }
+
+  const response = await fetch(url, { headers });
+  if (!response.ok) {
+    const body = await response.text().catch(() => "");
+    console.warn(`[wp-api] 拉取分类失败: ${response.status} ${url} — ${body}`);
+    return new Map();
+  }
+
+  const categories = (await response.json()) as Array<{ id: number; name: string }>;
+  const map = new Map<number, string>();
+  for (const cat of categories) {
+    map.set(cat.id, cat.name);
+  }
+  console.log(`[wp-api] 加载分类映射: ${map.size} 条`);
+  return map;
+}
 
 type FetchConfig = Pick<
   AdapterConfig,

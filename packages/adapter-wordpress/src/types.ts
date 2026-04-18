@@ -21,6 +21,8 @@ export interface WpPost {
   link: string;
   modified_gmt: string;
   status: string;
+  date?: string;
+  categories?: number[];
 }
 
 export interface ContentChunk {
@@ -29,6 +31,9 @@ export interface ContentChunk {
   description: string;
   content: string;
   sourcePath: string;
+  publishedAt: string | null;
+  categoryName: string | null;
+  readingTimeMinutes: number | null;
 }
 
 export interface SyncResult {

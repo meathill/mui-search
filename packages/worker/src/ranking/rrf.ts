@@ -15,6 +15,9 @@ interface ScoreAccumulator {
   content: string;
   score: number;
   locale?: string;
+  publishedAt?: string | null;
+  categoryName?: string | null;
+  readingTimeMinutes?: number | null;
 }
 
 interface MergeRankedResultsOptions {
@@ -76,6 +79,15 @@ function accumulateScores(
       if (item.locale) {
         nextValue.locale = item.locale;
       }
+      if (item.publishedAt != null) {
+        nextValue.publishedAt = item.publishedAt;
+      }
+      if (item.categoryName != null) {
+        nextValue.categoryName = item.categoryName;
+      }
+      if (item.readingTimeMinutes != null) {
+        nextValue.readingTimeMinutes = item.readingTimeMinutes;
+      }
 
       scoreMap.set(item.id, nextValue);
       continue;
@@ -93,6 +105,15 @@ function accumulateScores(
     }
     if (!previous.locale && item.locale) {
       previous.locale = item.locale;
+    }
+    if (previous.publishedAt == null && item.publishedAt != null) {
+      previous.publishedAt = item.publishedAt;
+    }
+    if (previous.categoryName == null && item.categoryName != null) {
+      previous.categoryName = item.categoryName;
+    }
+    if (previous.readingTimeMinutes == null && item.readingTimeMinutes != null) {
+      previous.readingTimeMinutes = item.readingTimeMinutes;
     }
   }
 }
@@ -161,6 +182,15 @@ function toHybridSearchResult(item: ScoreAccumulator): HybridSearchResult {
   }
   if (item.slug) {
     result.slug = item.slug;
+  }
+  if (item.publishedAt != null) {
+    result.publishedAt = item.publishedAt;
+  }
+  if (item.categoryName != null) {
+    result.categoryName = item.categoryName;
+  }
+  if (item.readingTimeMinutes != null) {
+    result.readingTimeMinutes = item.readingTimeMinutes;
   }
 
   return result;
