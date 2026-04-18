@@ -41,7 +41,10 @@
     // "WP_APP_PASSWORD": "设置为 secret: wrangler secret put WP_APP_PASSWORD",
     // "WP_LOCALE": "zh",
     // "WP_CHUNK_MAX_LENGTH": "2000",
-    // "WP_POSTS_PER_PAGE": "50"
+    // "WP_POSTS_PER_PAGE": "50",
+    // 博客若前置了 Cloudflare Zero Trust Access，需要额外配置 Service Token：
+    // "WP_CF_ACCESS_CLIENT_ID": "xxxx.access",
+    // "WP_CF_ACCESS_CLIENT_SECRET": "设置为 secret: wrangler secret put WP_CF_ACCESS_CLIENT_SECRET"
   },
   "triggers": {
     "crons": [

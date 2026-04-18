@@ -20,7 +20,7 @@ export function loadConfig(): AdapterConfig {
     throw new Error(`WP_POSTS_PER_PAGE 应在 1 到 100 之间，当前值: ${postsPerPage}`);
   }
 
-  return {
+  const config: AdapterConfig = {
     wpSiteUrl,
     wpUsername: process.env.WP_USERNAME!,
     wpAppPassword: process.env.WP_APP_PASSWORD!,
@@ -30,4 +30,9 @@ export function loadConfig(): AdapterConfig {
     chunkMaxLength,
     postsPerPage,
   };
+  if (process.env.WP_CF_ACCESS_CLIENT_ID && process.env.WP_CF_ACCESS_CLIENT_SECRET) {
+    config.cfAccessClientId = process.env.WP_CF_ACCESS_CLIENT_ID;
+    config.cfAccessClientSecret = process.env.WP_CF_ACCESS_CLIENT_SECRET;
+  }
+  return config;
 }

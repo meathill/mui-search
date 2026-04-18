@@ -15,7 +15,7 @@ export function buildWpSyncConfig(env: WorkerEnv): AdapterConfig {
     throw new Error("WP 同步配置不完整: 需要 WP_SITE_URL, WP_USERNAME, WP_APP_PASSWORD");
   }
 
-  return {
+  const config: AdapterConfig = {
     wpSiteUrl: env.WP_SITE_URL.replace(/\/+$/, ""),
     wpUsername: env.WP_USERNAME,
     wpAppPassword: env.WP_APP_PASSWORD,
@@ -25,6 +25,11 @@ export function buildWpSyncConfig(env: WorkerEnv): AdapterConfig {
     chunkMaxLength: parsePositiveInt(env.WP_CHUNK_MAX_LENGTH, DEFAULT_CHUNK_MAX_LENGTH),
     postsPerPage: parsePositiveInt(env.WP_POSTS_PER_PAGE, DEFAULT_POSTS_PER_PAGE),
   };
+  if (env.WP_CF_ACCESS_CLIENT_ID && env.WP_CF_ACCESS_CLIENT_SECRET) {
+    config.cfAccessClientId = env.WP_CF_ACCESS_CLIENT_ID;
+    config.cfAccessClientSecret = env.WP_CF_ACCESS_CLIENT_SECRET;
+  }
+  return config;
 }
 
 export async function runWpSync(env: WorkerEnv, mode: "incremental" | "full" = "incremental"): Promise<string> {

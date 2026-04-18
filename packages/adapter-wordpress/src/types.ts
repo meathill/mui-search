@@ -7,6 +7,9 @@ export interface AdapterConfig {
   locale: string;
   chunkMaxLength: number;
   postsPerPage: number;
+  // 可选：Cloudflare Access Service Token（博客前置了 CF Zero Trust 时需要）
+  cfAccessClientId?: string;
+  cfAccessClientSecret?: string;
 }
 
 export interface WpPost {

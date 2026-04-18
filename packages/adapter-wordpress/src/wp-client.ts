@@ -2,9 +2,12 @@ import type { AdapterConfig, WpPost } from "./types";
 
 const WP_API_FIELDS = "id,slug,title,content,excerpt,link,modified_gmt,status";
 
-export async function* fetchAllPosts(
-  config: Pick<AdapterConfig, "wpSiteUrl" | "wpUsername" | "wpAppPassword" | "postsPerPage">,
-): AsyncGenerator<WpPost[]> {
+type FetchConfig = Pick<
+  AdapterConfig,
+  "wpSiteUrl" | "wpUsername" | "wpAppPassword" | "postsPerPage" | "cfAccessClientId" | "cfAccessClientSecret"
+>;
+
+export async function* fetchAllPosts(config: FetchConfig): AsyncGenerator<WpPost[]> {
   let page = 1;
   let totalPages = 1;
 
@@ -25,10 +28,7 @@ export async function* fetchAllPosts(
   }
 }
 
-export async function* fetchPostsModifiedAfter(
-  config: Pick<AdapterConfig, "wpSiteUrl" | "wpUsername" | "wpAppPassword" | "postsPerPage">,
-  after: string,
-): AsyncGenerator<WpPost[]> {
+export async function* fetchPostsModifiedAfter(config: FetchConfig, after: string): AsyncGenerator<WpPost[]> {
   let page = 1;
   let totalPages = 1;
 
@@ -57,15 +57,18 @@ interface FetchPageResult {
 
 async function fetchPage(
   url: string,
-  config: Pick<AdapterConfig, "wpUsername" | "wpAppPassword">,
+  config: Pick<AdapterConfig, "wpUsername" | "wpAppPassword" | "cfAccessClientId" | "cfAccessClientSecret">,
 ): Promise<FetchPageResult> {
   const credentials = btoa(`${config.wpUsername}:${config.wpAppPassword}`);
-  const response = await fetch(url, {
-    headers: {
-      Authorization: `Basic ${credentials}`,
-      Accept: "application/json",
-    },
-  });
+  const headers: Record<string, string> = {
+    Authorization: `Basic ${credentials}`,
+    Accept: "application/json",
+  };
+  if (config.cfAccessClientId && config.cfAccessClientSecret) {
+    headers["CF-Access-Client-Id"] = config.cfAccessClientId;
+    headers["CF-Access-Client-Secret"] = config.cfAccessClientSecret;
+  }
+  const response = await fetch(url, { headers });
 
   if (!response.ok) {
     const body = await response.text().catch(() => "");

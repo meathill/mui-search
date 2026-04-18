@@ -338,8 +338,29 @@ function mui_search_results($query, $per_page = 10) {
 - 安全插件（Wordfence、iThemes 等）屏蔽了 REST API
 - 主机商的 WAF 规则拦截了请求
 - `.htaccess` 中有限制规则
+- 博客前置了 **Cloudflare Zero Trust Access**（见下方专项说明）
 
 **解决方法：** 在安全插件中将 REST API 加入白名单，或联系主机商解除限制。
+
+#### 博客前置了 Cloudflare Access 怎么办？
+
+如果响应头里出现 `cf-access-domain` / `cf-access-aud`，或响应体提到 "Forbidden. You don't have permission to view this..."，说明请求被 CF Access 拦截了，根本没到 WordPress。解决办法是创建一个 **Service Token**：
+
+1. 进入 Cloudflare Zero Trust → Access → Service Auth → Service Tokens → Create Service Token
+2. 记下生成的 `Client ID` 和 `Client Secret`（Secret 只显示一次）
+3. 进入保护该博客域名的 Access Application → Policies，新增一条：
+   - Action: `Service Auth`
+   - Include: `Service Token` → 选择刚创建的 Token
+4. 给 Worker 配置：
+   ```bash
+   wrangler secret put WP_CF_ACCESS_CLIENT_SECRET
+   ```
+   并在 `wrangler.jsonc` 的 `vars` 里加：
+   ```jsonc
+   "WP_CF_ACCESS_CLIENT_ID": "xxxx.access"
+   ```
+
+Worker 同步时会自动附带 `CF-Access-Client-Id` / `CF-Access-Client-Secret` 请求头，绕过 Access 的交互式认证。
 
 ### Q: 同步速度很慢？
 

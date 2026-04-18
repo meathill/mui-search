@@ -102,6 +102,8 @@ export interface WorkerEnv
   WP_LOCALE?: string;
   WP_CHUNK_MAX_LENGTH?: string;
   WP_POSTS_PER_PAGE?: string;
+  WP_CF_ACCESS_CLIENT_ID?: string;
+  WP_CF_ACCESS_CLIENT_SECRET?: string;
 }
 
 export interface TiDBRepository {

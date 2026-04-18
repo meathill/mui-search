@@ -338,8 +338,29 @@ function mui_search_results($query, $per_page = 10) {
 - A security plugin (Wordfence, iThemes, etc.) is blocking the REST API
 - Your hosting provider's WAF rules are intercepting requests
 - `.htaccess` contains restrictive rules
+- The blog is fronted by **Cloudflare Zero Trust Access** (see below)
 
 **Fix:** Whitelist the REST API in your security plugin, or contact your hosting provider.
+
+#### Blog fronted by Cloudflare Access?
+
+If the response headers include `cf-access-domain` / `cf-access-aud`, or the body mentions "Forbidden. You don't have permission to view this...", the request is being blocked by CF Access before it reaches WordPress. The fix is to create a **Service Token**:
+
+1. Go to Cloudflare Zero Trust → Access → Service Auth → Service Tokens → Create Service Token
+2. Save the `Client ID` and `Client Secret` (Secret is shown only once)
+3. Open the Access Application that protects the blog domain → Policies, and add a new policy:
+   - Action: `Service Auth`
+   - Include: `Service Token` → select the token you just created
+4. Configure the Worker:
+   ```bash
+   wrangler secret put WP_CF_ACCESS_CLIENT_SECRET
+   ```
+   And add to `wrangler.jsonc` `vars`:
+   ```jsonc
+   "WP_CF_ACCESS_CLIENT_ID": "xxxx.access"
+   ```
+
+The Worker will automatically attach `CF-Access-Client-Id` / `CF-Access-Client-Secret` headers when syncing, bypassing the interactive Access challenge.
 
 ### Q: Sync is very slow?
 
