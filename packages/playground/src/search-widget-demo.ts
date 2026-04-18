@@ -17,7 +17,7 @@ const localeSelect = requireElement(
   HTMLSelectElement,
   "Missing #demo-locale-select locale select",
 );
-const toolset = requireElement("#arm_toolset", HTMLElement, "Missing #arm_toolset container");
+const toolset = requireElement("[data-mui-search]", HTMLElement, "Missing [data-mui-search] container");
 
 const activeLocale = resolveActiveLocale(new URL(window.location.href).searchParams.get(LOCALE_QUERY_KEY));
 
@@ -72,17 +72,14 @@ function buildWidgetScriptUrl(locale: string): string {
 }
 
 function buildSnippet(locale: string): string {
-  return `<!-- 1. Prepare the container and config attributes in your site navigation -->
-<div 
-  id="arm_toolset" 
-  data-locale="${locale}" 
-  data-api-base-url="${publicUrl}" 
-  data-suggest-limit="8" 
+  return `<!-- 1. Place the widget mount point anywhere on your page -->
+<div
+  data-mui-search
+  data-locale="${locale}"
+  data-api-base-url="${publicUrl}"
+  data-suggest-limit="8"
   data-search-limit="10"
->
-  <!-- The widget will auto-insert the search button before #arm_topnav_mybar -->
-  <div id="arm_topnav_mybar">Login/Menu</div>
-</div>
+></div>
 
 <!-- 2. Include the corresponding locale bundle before </body> -->
 <script src="${buildWidgetScriptUrl(locale)}"></script>`;
