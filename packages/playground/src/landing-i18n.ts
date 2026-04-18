@@ -143,7 +143,7 @@ pnpm run deploy`,
         label: "Step 3",
         title: "Embed Widget",
         code: `<link rel="stylesheet"
-  href="https://unpkg.com/@mui-search/search-widget/dist/search-widget.css">
+  href="https://unpkg.com/mui-search/dist/search-widget.css">
 
 <div
   data-mui-search
@@ -151,7 +151,7 @@ pnpm run deploy`,
   data-locale="en"
 ></div>
 
-<script src="https://unpkg.com/@mui-search/search-widget/dist/search.en.js"></script>`,
+<script src="https://unpkg.com/mui-search/dist/search.js"></script>`,
       },
     ],
   },
@@ -259,7 +259,7 @@ pnpm run deploy`,
         label: "\u7b2c 3 \u6b65",
         title: "\u5d4c\u5165\u7ec4\u4ef6",
         code: `<link rel="stylesheet"
-  href="https://unpkg.com/@mui-search/search-widget/dist/search-widget.css">
+  href="https://unpkg.com/mui-search/dist/search-widget.css">
 
 <div
   data-mui-search
@@ -267,7 +267,8 @@ pnpm run deploy`,
   data-locale="zh"
 ></div>
 
-<script src="https://unpkg.com/@mui-search/search-widget/dist/search.zh.js"></script>`,
+<script src="https://unpkg.com/mui-search/dist/search.js"></script>
+<script src="https://unpkg.com/mui-search/dist/locale/zh.js"></script>`,
       },
     ],
   },

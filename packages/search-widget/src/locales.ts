@@ -1,4 +1,4 @@
-import { ACTIVE_LOCALE_PACKS } from "./active-locale-packs";
+import { ACTIVE_LOCALE_PACKS, onLocaleChange } from "./active-locale-packs";
 import type { LocaleTranslationPack } from "./locale-packs/types";
 
 export interface TranslationText {
@@ -27,40 +27,29 @@ export interface TranslationText {
 
 export type LocaleKey = string;
 
-const AVAILABLE_LOCALES = Object.keys(ACTIVE_LOCALE_PACKS);
-const AVAILABLE_LOCALE_SET = new Set(AVAILABLE_LOCALES);
 const FALLBACK_LOCALE = "en";
-const DEFAULT_FALLBACK_LOCALE = AVAILABLE_LOCALE_SET.has(FALLBACK_LOCALE)
-  ? FALLBACK_LOCALE
-  : (AVAILABLE_LOCALES[0] ?? FALLBACK_LOCALE);
 
-export const translations = buildTranslations();
+const translationCache = new Map<string, TranslationText>();
+onLocaleChange(function clearTranslationCache() {
+  translationCache.clear();
+});
 
 export function getTranslations(locale: string): TranslationText {
   const resolvedLocale = resolveLocale(locale);
-  const translation = translations[resolvedLocale] ?? translations[DEFAULT_FALLBACK_LOCALE];
-  if (!translation) {
-    throw new Error("[search-widget] 无法解析语言文案，请检查翻译配置");
+  const cached = translationCache.get(resolvedLocale);
+  if (cached) {
+    return cached;
   }
+  const pack =
+    ACTIVE_LOCALE_PACKS[resolvedLocale] ??
+    ACTIVE_LOCALE_PACKS[FALLBACK_LOCALE] ??
+    Object.values(ACTIVE_LOCALE_PACKS)[0];
+  if (!pack) {
+    throw new Error("[search-widget] 没有可用语言包，请先调用 registerLocale");
+  }
+  const translation = unpackTranslations(pack);
+  translationCache.set(resolvedLocale, translation);
   return translation;
-}
-
-function buildTranslations(): Record<LocaleKey, TranslationText> {
-  const localeEntries: [string, TranslationText][] = [];
-
-  for (const locale of AVAILABLE_LOCALES) {
-    const localePack = ACTIVE_LOCALE_PACKS[locale];
-    if (!localePack) {
-      continue;
-    }
-    localeEntries.push([locale, unpackTranslations(localePack)]);
-  }
-
-  if (localeEntries.length === 0) {
-    throw new Error("[search-widget] 没有可用语言包，请检查 ACTIVE_LOCALE_PACKS 配置");
-  }
-
-  return Object.fromEntries(localeEntries);
 }
 
 function unpackTranslations(localePack: LocaleTranslationPack): TranslationText {
@@ -148,11 +137,11 @@ function resolveLocale(locale: string): LocaleKey {
     return language;
   }
 
-  return DEFAULT_FALLBACK_LOCALE;
+  return FALLBACK_LOCALE;
 }
 
 function isWidgetLocale(locale: string): boolean {
-  return AVAILABLE_LOCALE_SET.has(locale);
+  return Object.hasOwn(ACTIVE_LOCALE_PACKS, locale);
 }
 
 function interpolate(template: string, params: Record<string, string | number>): string {

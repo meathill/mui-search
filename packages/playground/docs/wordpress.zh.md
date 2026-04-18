@@ -295,7 +295,7 @@ curl "https://your-worker.dev/api/wp/v2/search?search=hello+world&per_page=5"
 
 ```html
 <link rel="stylesheet"
-  href="https://unpkg.com/@mui-search/search-widget/dist/search-widget.css">
+  href="https://unpkg.com/mui-search/dist/search-widget.css">
 
 <div
   data-mui-search
@@ -303,7 +303,8 @@ curl "https://your-worker.dev/api/wp/v2/search?search=hello+world&per_page=5"
   data-locale="zh"
 ></div>
 
-<script src="https://unpkg.com/@mui-search/search-widget/dist/search.zh.js"></script>
+<script src="https://unpkg.com/mui-search/dist/search.js"></script>
+<script src="https://unpkg.com/mui-search/dist/locale/zh.js"></script>
 ```
 
 ### 方式二：在 PHP 中调用 API

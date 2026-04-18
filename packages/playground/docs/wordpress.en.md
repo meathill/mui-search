@@ -295,7 +295,7 @@ Add the MUI Search Widget to your theme's `header.php` or `footer.php`:
 
 ```html
 <link rel="stylesheet"
-  href="https://unpkg.com/@mui-search/search-widget/dist/search-widget.css">
+  href="https://unpkg.com/mui-search/dist/search-widget.css">
 
 <div
   data-mui-search
@@ -303,7 +303,7 @@ Add the MUI Search Widget to your theme's `header.php` or `footer.php`:
   data-locale="en"
 ></div>
 
-<script src="https://unpkg.com/@mui-search/search-widget/dist/search.en.js"></script>
+<script src="https://unpkg.com/mui-search/dist/search.js"></script>
 ```
 
 ### Option 2: Call the API from PHP

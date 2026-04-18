@@ -1,21 +1,18 @@
 import { readFileSync } from "node:fs";
 import { resolve } from "node:path";
 
-import { defineConfig, loadEnv } from "vite";
+import { defineConfig } from "vite";
 
 const PACKAGE_JSON_FILE_PATH = resolve(__dirname, "package.json");
 
-export default defineConfig(({ mode }) => {
-  const env = loadEnv(mode, process.cwd(), "");
-  const publicUrl = env.PUBLIC_URL || "";
-  const siteUrl = env.SITE_URL || "";
+export default defineConfig(() => {
   const widgetVersion = resolveWidgetVersion();
 
   return {
     publicDir: false,
     define: {
-      "process.env.PUBLIC_URL": JSON.stringify(publicUrl),
-      "process.env.SITE_URL": JSON.stringify(siteUrl),
+      "process.env.PUBLIC_URL": JSON.stringify(""),
+      "process.env.SITE_URL": JSON.stringify(""),
       "process.env.WIDGET_VERSION": JSON.stringify(widgetVersion),
     },
     esbuild: {
@@ -27,16 +24,15 @@ export default defineConfig(({ mode }) => {
       target: "es2022",
       outDir: "dist",
       emptyOutDir: false,
+      sourcemap: true,
       lib: {
-        entry: resolve(__dirname, "src/iife-entry.ts"),
-        formats: ["iife"],
-        name: "MuiSearchWidget",
+        entry: resolve(__dirname, "src/index.ts"),
+        formats: ["es", "cjs"],
+        fileName: (format) => (format === "es" ? "mui-search.mjs" : "mui-search.cjs"),
       },
       rollupOptions: {
         output: {
-          format: "iife",
-          name: "MuiSearchWidget",
-          entryFileNames: "search.js",
+          exports: "named",
           inlineDynamicImports: true,
         },
       },
@@ -48,7 +44,7 @@ function resolveWidgetVersion(): string {
   const packageJson = JSON.parse(readFileSync(PACKAGE_JSON_FILE_PATH, "utf-8")) as { version?: unknown };
   const version = typeof packageJson.version === "string" ? packageJson.version.trim() : "";
   if (!version) {
-    throw new Error("[build:widget] package.json 缺少 version");
+    throw new Error("[build:lib] package.json 缺少 version");
   }
   return version;
 }

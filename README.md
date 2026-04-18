@@ -36,7 +36,7 @@ User → Search Widget (Preact IIFE)
 packages/
 ├── shared/          # @mui-search/shared — TypeScript types & utilities
 ├── worker/          # @mui-search/worker — Cloudflare Workers API
-├── search-widget/   # @mui-search/search-widget — Preact IIFE widget
+├── search-widget/   # mui-search — Preact IIFE widget
 └── playground/      # @mui-search/playground — Landing page & dev tools
 ```
 
@@ -132,7 +132,7 @@ This builds the playground static site and deploys everything (Worker + static a
 
 ```html
 <!-- Include the CSS -->
-<link rel="stylesheet" href="https://unpkg.com/@mui-search/search-widget/dist/search-widget.css">
+<link rel="stylesheet" href="https://unpkg.com/mui-search/dist/search-widget.css">
 
 <!-- Add a mount point -->
 <div
@@ -141,8 +141,11 @@ This builds the playground static site and deploys everything (Worker + static a
   data-locale="en"
 ></div>
 
-<!-- Include the JS -->
-<script src="https://unpkg.com/@mui-search/search-widget/dist/search.en.js"></script>
+<!-- Include the main JS (built-in English) -->
+<script src="https://unpkg.com/mui-search/dist/search.js"></script>
+
+<!-- (Optional) Load extra locales on demand, dayjs-style -->
+<script src="https://unpkg.com/mui-search/dist/locale/zh.js"></script>
 ```
 
 Or mount programmatically:

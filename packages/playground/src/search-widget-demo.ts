@@ -73,11 +73,16 @@ function resolveActiveLocale(rawLocale: string | null): string {
   return normalized;
 }
 
-function buildWidgetScriptUrl(locale: string): string {
-  return `${publicUrl}/search-widget/search.${widgetVersion}.${locale}.js`;
+function buildWidgetScriptUrl(): string {
+  return `${publicUrl}/search-widget/search.js`;
+}
+
+function buildLocaleScriptUrl(locale: string): string {
+  return `${publicUrl}/search-widget/locale/${locale}.js`;
 }
 
 function buildSnippet(locale: string): string {
+  const localeTag = locale === "en" ? "" : `\n<script src="${buildLocaleScriptUrl(locale)}"></script>`;
   return `<!-- 1. Place the widget mount point anywhere on your page -->
 <div
   data-mui-search
@@ -87,8 +92,8 @@ function buildSnippet(locale: string): string {
   data-search-limit="10"
 ></div>
 
-<!-- 2. Include the corresponding locale bundle before </body> -->
-<script src="${buildWidgetScriptUrl(locale)}"></script>`;
+<!-- 2. Include the main widget bundle (English built-in) -->
+<script src="${buildWidgetScriptUrl()}"></script>${localeTag}`;
 }
 
 async function copySnippet(value: string) {
@@ -109,13 +114,22 @@ function setCopyStatus(text: string, isError: boolean) {
 }
 
 function loadWidgetScript(locale: string) {
-  const widgetScript = document.createElement("script");
-  widgetScript.src = buildWidgetScriptUrl(locale);
-  widgetScript.dataset.locale = locale;
-  widgetScript.addEventListener("error", function onScriptError() {
-    setCopyStatus(`Failed to load widget script: ${buildWidgetScriptUrl(locale)}`, true);
+  const mainScript = document.createElement("script");
+  mainScript.src = buildWidgetScriptUrl();
+  mainScript.addEventListener("error", function onScriptError() {
+    setCopyStatus(`Failed to load widget script: ${buildWidgetScriptUrl()}`, true);
   });
-  document.body.appendChild(widgetScript);
+  mainScript.addEventListener("load", function onMainLoaded() {
+    if (locale === "en") return;
+    const localeScript = document.createElement("script");
+    localeScript.src = buildLocaleScriptUrl(locale);
+    localeScript.dataset.locale = locale;
+    localeScript.addEventListener("error", function onLocaleError() {
+      setCopyStatus(`Failed to load locale bundle: ${buildLocaleScriptUrl(locale)}`, true);
+    });
+    document.body.appendChild(localeScript);
+  });
+  document.body.appendChild(mainScript);
 }
 
 function requireElement<T extends Element>(selector: string, elementCtor: { new (): T }, errorMessage: string): T {
